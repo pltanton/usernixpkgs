@@ -115,3 +115,7 @@ map <F10> :NERDTreeToggle<CR>
 
 " GHC Mod
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+
+" Notes
+let g:notes_directories = ['~/syncthing/anton/notes']
+let g:notes_suffix = '.md'

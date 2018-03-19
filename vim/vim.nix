@@ -2,7 +2,7 @@ with import <nixpkgs> {};
 
 {
   customRC = builtins.readFile ./vimrc;
-  vam.knownPlugins = pkgs.vimPlugins;
+  vam.knownPlugins = pkgs.vimPlugins // (import ./customPlugins.nix);
   vam.pluginDictionaries = [
     { names = [
       "Tabular"
@@ -22,7 +22,8 @@ with import <nixpkgs> {};
       "vim-colorschemes"
       "vim-airline-themes"
 
-      "notes"
+      "vim-notes"
+      "vim-misc"
     ]; }
     { names = [ "vim-go" "deoplete-go" ]; ft_regex = "^go$"; }
     { names = [ "flake8-vim" "deoplete-jedi" ]; ft_regex = "^python$"; }

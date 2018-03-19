@@ -8,7 +8,7 @@ let
   myNeovim = pkgs.neovim.override {
     vimAlias = true;
     withPython = true;
-    configure = import ./vim.nix;
+    configure = import ./vim/vim.nix;
   };
 
 in {
