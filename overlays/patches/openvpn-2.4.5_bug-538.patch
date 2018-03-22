@@ -1,0 +1,169 @@
+diff -Naur openvpn-2.4.5/src/openvpn/console.h openvpn-2.4.5_bug-538/src/openvpn/console.h
+--- openvpn-2.4.5/src/openvpn/console.h	2018-03-01 08:22:17.000000000 +0100
++++ openvpn-2.4.5_bug-538/src/openvpn/console.h	2018-03-09 15:01:36.825094859 +0100
+@@ -116,4 +116,22 @@
+     return query_user_exec();
+ }
+ 
++/**
++ * A plain "make Gert happy" wrapper over built-in user querying method.
++ * Same arguments as @query_user_add
++ *
++ * Allows to use built-in method for PKCS11 PIN prompt regardless of
++ * the systemd support status and presence,
++ * see https://community.openvpn.net/openvpn/ticket/538 for details.
++*/
++static inline bool
++query_user_builtin_SINGLE(char *prompt, size_t prompt_len,
++                  char *resp, size_t resp_len,
++                  bool echo)
++{
++    query_user_clear();
++    query_user_add(prompt, prompt_len, resp, resp_len, echo);
++    return query_user_exec_builtin();
++}
++
+ #endif /* ifndef CONSOLE_H */
+diff -Naur openvpn-2.4.5/src/openvpn/misc.c openvpn-2.4.5_bug-538/src/openvpn/misc.c
+--- openvpn-2.4.5/src/openvpn/misc.c	2018-03-01 08:22:19.000000000 +0100
++++ openvpn-2.4.5_bug-538/src/openvpn/misc.c	2018-03-09 15:02:11.056279505 +0100
+@@ -930,10 +930,19 @@
+             struct buffer user_prompt = alloc_buf_gc(128, &gc);
+ 
+             buf_printf(&user_prompt, "NEED-OK|%s|%s:", prefix, up->username);
+-            if (!query_user_SINGLE(BSTR(&user_prompt), BLEN(&user_prompt),
+-                                   up->password, USER_PASS_LEN, false))
+-            {
+-                msg(M_FATAL, "ERROR: could not read %s ok-confirmation from stdin", prefix);
++            if (flags & GET_USER_PASS_FORCE_BUILTIN) {
++                if (!query_user_builtin_SINGLE(BSTR(&user_prompt), BLEN(&user_prompt),
++                                       up->password, USER_PASS_LEN, false))
++                {
++                    msg(M_FATAL, "ERROR: could not read %s ok-confirmation from stdin", prefix);
++                }
++            }
++            else {
++                if (!query_user_SINGLE(BSTR(&user_prompt), BLEN(&user_prompt),
++                                       up->password, USER_PASS_LEN, false))
++                {
++                    msg(M_FATAL, "ERROR: could not read %s ok-confirmation from stdin", prefix);
++                }
+             }
+ 
+             if (!strlen(up->password))
+@@ -941,7 +950,7 @@
+                 strcpy(up->password, "ok");
+             }
+         }
+-        else if (flags & GET_USER_PASS_INLINE_CREDS)
++        else if (flags & GET_USER_PASS_NEED_OK)
+         {
+             struct buffer buf;
+             buf_set_read(&buf, (uint8_t *) auth_file, strlen(auth_file) + 1);
+@@ -1030,10 +1039,19 @@
+                     buf_printf(&challenge, "CHALLENGE: %s", ac->challenge_text);
+                     buf_set_write(&packed_resp, (uint8_t *)up->password, USER_PASS_LEN);
+ 
+-                    if (!query_user_SINGLE(BSTR(&challenge), BLEN(&challenge),
+-                                           response, USER_PASS_LEN, BOOL_CAST(ac->flags&CR_ECHO)))
+-                    {
+-                        msg(M_FATAL, "ERROR: could not read challenge response from stdin");
++                    if (flags & GET_USER_PASS_FORCE_BUILTIN) {
++                        if (!query_user_builtin_SINGLE(BSTR(&challenge), BLEN(&challenge),
++                                               response, USER_PASS_LEN, BOOL_CAST(ac->flags&CR_ECHO)))
++                        {
++                            msg(M_FATAL, "ERROR: could not read challenge response from stdin");
++                        }
++                    }
++                    else {
++                        if (!query_user_SINGLE(BSTR(&challenge), BLEN(&challenge),
++                                               response, USER_PASS_LEN, BOOL_CAST(ac->flags&CR_ECHO)))
++                        {
++                            msg(M_FATAL, "ERROR: could not read challenge response from stdin");
++                        }
+                     }
+                     strncpynt(up->username, ac->user, USER_PASS_LEN);
+                     buf_printf(&packed_resp, "CRV1::%s::%s", ac->state_id, response);
+@@ -1065,9 +1083,17 @@
+                                    up->password, USER_PASS_LEN, false);
+                 }
+ 
+-                if (!query_user_exec() )
+-                {
+-                    msg(M_FATAL, "ERROR: Failed retrieving username or password");
++                if (flags & GET_USER_PASS_FORCE_BUILTIN) {
++                    if (!query_user_exec_builtin() )
++                    {
++                        msg(M_FATAL, "ERROR: Failed retrieving username or password");
++                    }
++                }
++                else {
++                    if (!query_user_exec() )
++                    {
++                        msg(M_FATAL, "ERROR: Failed retrieving username or password");
++                    }
+                 }
+ 
+                 if (!(flags & GET_USER_PASS_PASSWORD_ONLY))
+@@ -1088,11 +1114,21 @@
+                     challenge = alloc_buf_gc(14+strlen(auth_challenge), &gc);
+                     buf_printf(&challenge, "CHALLENGE: %s", auth_challenge);
+ 
+-                    if (!query_user_SINGLE(BSTR(&challenge), BLEN(&challenge),
+-                                           response, USER_PASS_LEN,
+-                                           BOOL_CAST(flags & GET_USER_PASS_STATIC_CHALLENGE_ECHO)))
+-                    {
+-                        msg(M_FATAL, "ERROR: could not retrieve static challenge response");
++                    if (flags & GET_USER_PASS_FORCE_BUILTIN) {
++                        if (!query_user_builtin_SINGLE(BSTR(&challenge), BLEN(&challenge),
++                                               response, USER_PASS_LEN,
++                                               BOOL_CAST(flags & GET_USER_PASS_STATIC_CHALLENGE_ECHO)))
++                        {
++                            msg(M_FATAL, "ERROR: could not retrieve static challenge response");
++                        }
++                    }
++                    else {
++                        if (!query_user_SINGLE(BSTR(&challenge), BLEN(&challenge),
++                                               response, USER_PASS_LEN,
++                                               BOOL_CAST(flags & GET_USER_PASS_STATIC_CHALLENGE_ECHO)))
++                        {
++                            msg(M_FATAL, "ERROR: could not retrieve static challenge response");
++                        }
+                     }
+                     if (openvpn_base64_encode(up->password, strlen(up->password), &pw64) == -1
+                         || openvpn_base64_encode(response, strlen(response), &resp64) == -1)
+diff -Naur openvpn-2.4.5/src/openvpn/misc.h openvpn-2.4.5_bug-538/src/openvpn/misc.h
+--- openvpn-2.4.5/src/openvpn/misc.h	2018-03-01 08:22:19.000000000 +0100
++++ openvpn-2.4.5_bug-538/src/openvpn/misc.h	2018-03-09 15:02:07.946262729 +0100
+@@ -232,7 +232,9 @@
+ #define GET_USER_PASS_STATIC_CHALLENGE       (1<<8) /* SCRV1 protocol -- static challenge */
+ #define GET_USER_PASS_STATIC_CHALLENGE_ECHO  (1<<9) /* SCRV1 protocol -- echo response */
+ 
+-#define GET_USER_PASS_INLINE_CREDS (1<<10)  /* indicates that auth_file is actually inline creds */
++#define GET_USER_PASS_INLINE_CREDS (1<<10)
++
++#define GET_USER_PASS_FORCE_BUILTIN (1<<11) /* force builtin prompt to work around 538 */
+ 
+ bool get_user_pass_cr(struct user_pass *up,
+                       const char *auth_file,
+diff -Naur openvpn-2.4.5/src/openvpn/pkcs11.c openvpn-2.4.5_bug-538/src/openvpn/pkcs11.c
+--- openvpn-2.4.5/src/openvpn/pkcs11.c	2018-03-01 08:22:17.000000000 +0100
++++ openvpn-2.4.5_bug-538/src/openvpn/pkcs11.c	2018-03-09 15:02:01.982230559 +0100
+@@ -257,7 +257,7 @@
+             &token_pass,
+             NULL,
+             prompt,
+-            GET_USER_PASS_MANAGEMENT|GET_USER_PASS_PASSWORD_ONLY|GET_USER_PASS_NOFATAL
++            GET_USER_PASS_MANAGEMENT|GET_USER_PASS_PASSWORD_ONLY|GET_USER_PASS_NOFATAL|GET_USER_PASS_FORCE_BUILTIN
+             )
+         )
+     {
+@@ -813,7 +813,7 @@
+     ASSERT(token!=NULL);
+ 
+     buf_printf(&pass_prompt, "Please enter '%s' token PIN or 'cancel': ", token->display);
+-    if (!query_user_SINGLE(BSTR(&pass_prompt), BLEN(&pass_prompt),
++    if (!query_user_builtin_SINGLE(BSTR(&pass_prompt), BLEN(&pass_prompt),
+                            pin, pin_max, false))
+     {
+         msg(M_FATAL, "Could not retrieve the PIN");
