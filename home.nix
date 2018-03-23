@@ -2,10 +2,11 @@
 
 {
   home.packages = with pkgs; [
+    google-play-music-desktop-player 
+    maim
     autorandr
     kbdd
     libnotify
-    dunst
     pamixer
     pavucontrol
     pass
@@ -16,7 +17,7 @@
     xorg.xbacklight
     evince
     shared_mime_info
-    eog
+    gnome3.eog
     qutebrowser
     feh
 
@@ -32,7 +33,6 @@
     arc-icon-theme
     arc-theme
     atom
-    compton
 
     nodePackages.peerflix
     discord
@@ -78,5 +78,37 @@
       enable = true;
       defaultCacheTtl = 1800;
     };
+
+    dunst = {
+      enable = true;
+      settings = import ./dunst.nix;
+    };
+
+    stalonetray = {
+      enable = true;
+      config = import ./stalonetray.nix;
+    };
+
+    compton.enable = true;
+    syncthing.enable = true;
   };
+
+  xsession = {
+    enable = true;
+    windowManager.xmonad = {
+      enable = true;
+      enableContribAndExtras = true;
+    };
+    initExtra = ''
+      kbdd &
+      autorandr -c &
+      xbanish &
+    '';
+  };
+
+  home.keyboard = {
+    layout = "us,ru";
+    variant = "dvp,diktor";
+  };
+
 }
