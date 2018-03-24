@@ -2,6 +2,7 @@
 
 {
   home.packages = with pkgs; [
+    arandr
     google-play-music-desktop-player 
     maim
     autorandr
@@ -20,10 +21,10 @@
     gnome3.eog
     qutebrowser
     feh
+    gthumb
 
     tdesktop
 
-    termite
     tmux
     wget
 
@@ -62,6 +63,18 @@
       enable = true;
     };
 
+    zsh = {
+      enable = true;
+      oh-my-zsh = {
+        enable = true;
+        theme = "robbyrussell";
+        plugins = [ "zsh-syntax-highlighting" "git" "common-aliaces" "sudo"
+                    "systemd" "wd" "cp" "history-substring-search" ];
+      };
+    };
+
+    termite = { enable = true; } // (import ./termite.nix);
+
     firefox = {
       enable = true;
       enableIcedTea = true;
@@ -89,7 +102,7 @@
       config = import ./stalonetray.nix;
     };
 
-    compton.enable = true;
+#    compton.enable = true;
     syncthing.enable = true;
   };
 
