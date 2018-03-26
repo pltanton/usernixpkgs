@@ -1,4 +1,5 @@
 {
+  iconName = "utilities-terminal";
   scrollbackLines = 10000;
   clickableUrl = true;
   font = "Hack 13";

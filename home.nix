@@ -22,18 +22,25 @@
     qutebrowser
     feh
     gthumb
+    texlive.combined.scheme-full
 
     tdesktop
 
     tmux
     wget
 
+    taffybar
+
     lxappearance-gtk3
 
     htop
+    gnome3.adwaita-icon-theme
     arc-icon-theme
     arc-theme
     atom
+
+    wine
+    unzip
 
     nodePackages.peerflix
     discord
@@ -42,6 +49,7 @@
     jetbrains.idea-community
     pypi2nix
     haskellPackages.hlint
+    haskellPackages.tuple
     (python3.withPackages(ps: with ps; [ virtualenv lldb jedi ]))
 
     haskellPackages.xmobar
@@ -97,11 +105,9 @@
       settings = import ./dunst.nix;
     };
 
-    stalonetray = {
+    taffybar = {
       enable = true;
-      config = import ./stalonetray.nix;
     };
-
 #    compton.enable = true;
     syncthing.enable = true;
   };
@@ -111,6 +117,9 @@
     windowManager.xmonad = {
       enable = true;
       enableContribAndExtras = true;
+      extraPackages = haskellPackages: [
+        haskellPackages.taffybar
+      ];
     };
     initExtra = ''
       kbdd &
@@ -123,5 +132,24 @@
     layout = "us,ru";
     variant = "dvp,diktor";
   };
+  
+  home.sessionVariables = {
+    EDITOR = "nvim";
+  };
 
+  nixpkgs.config.packageOverrides = super: rec {
+    haskellPackages = super.haskellPackages.override {
+      overrides = self: super: {
+        taffybar = self.callPackage ./pkgs/taffybar.nix {
+          pkgs_gtk3 = pkgs.gtk3;
+        };
+        gtk-traymanager = self.callPackage ./pkgs/traymanager.nix {
+          pkgs_gtk3 = pkgs.gtk3;
+        };
+      };
+    };
+    taffybar = super.taffybar.override (_: {
+    });
+  };
+  nixpkgs.config.allowUnfree = true;
 }
