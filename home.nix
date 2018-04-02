@@ -2,63 +2,7 @@
 
 let
   config = {
-    home.packages = with pkgs; [
-      arandr
-      google-play-music-desktop-player 
-      maim
-      autorandr
-      kbdd
-      libnotify
-      pamixer
-      pavucontrol
-      pass
-      xbanish
-      xclip
-      xdotool
-      xkblayout-state
-      xorg.xbacklight
-      evince
-      shared_mime_info
-      gnome3.eog
-      qutebrowser
-      feh
-      gthumb
-      texlive.combined.scheme-full
-      mpv
-
-      tdesktop
-
-      tmux
-      wget
-
-      lxappearance-gtk3
-
-      htop
-      gnome3.adwaita-icon-theme
-      arc-icon-theme
-      arc-theme
-      atom
-
-      jdk
-
-      wine
-      unzip
-
-      nodePackages.peerflix
-      discord
-
-      gcc
-      jetbrains.idea-community
-      androidsdk
-      android-studio
-      pypi2nix
-      haskellPackages.hlint
-      haskellPackages.tuple
-      (python3.withPackages(ps: with ps; [ virtualenv lldb jedi ]))
-
-      haskellPackages.xmobar
-    ];
-
+    home.packages = import ./commonPackages.nix pkgs;
     programs = {
       git = {
         enable = true;
@@ -120,7 +64,6 @@ let
         settings = import ./dunst.nix;
       };
 
-  #    compton.enable = true;
       syncthing.enable = true;
       stalonetray = {
         enable = true;
@@ -154,5 +97,5 @@ let
   overridesPath = ./overrides.nix;
 in
   if builtins.pathExists overridesPath
-  then import overridesPath config
+  then config // import overridesPath config pkgs
   else config
