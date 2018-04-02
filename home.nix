@@ -1,144 +1,158 @@
 { pkgs, ... }:
 
-{
-  home.packages = with pkgs; [
-    arandr
-    google-play-music-desktop-player 
-    maim
-    autorandr
-    kbdd
-    libnotify
-    pamixer
-    pavucontrol
-    pass
-    xbanish
-    xclip
-    xdotool
-    xkblayout-state
-    xorg.xbacklight
-    evince
-    shared_mime_info
-    gnome3.eog
-    qutebrowser
-    feh
-    gthumb
-    texlive.combined.scheme-full
-    mpv
+let
+  config = {
+    home.packages = with pkgs; [
+      arandr
+      google-play-music-desktop-player 
+      maim
+      autorandr
+      kbdd
+      libnotify
+      pamixer
+      pavucontrol
+      pass
+      xbanish
+      xclip
+      xdotool
+      xkblayout-state
+      xorg.xbacklight
+      evince
+      shared_mime_info
+      gnome3.eog
+      qutebrowser
+      feh
+      gthumb
+      texlive.combined.scheme-full
+      mpv
 
-    tdesktop
+      tdesktop
 
-    tmux
-    wget
+      tmux
+      wget
 
-    lxappearance-gtk3
+      lxappearance-gtk3
 
-    htop
-    gnome3.adwaita-icon-theme
-    arc-icon-theme
-    arc-theme
-    atom
+      htop
+      gnome3.adwaita-icon-theme
+      arc-icon-theme
+      arc-theme
+      atom
 
-    wine
-    unzip
+      jdk
 
-    nodePackages.peerflix
-    discord
+      wine
+      unzip
 
-    gcc
-    jetbrains.idea-community
-    androidsdk
-    android-studio
-    pypi2nix
-    haskellPackages.hlint
-    haskellPackages.tuple
-    (python3.withPackages(ps: with ps; [ virtualenv lldb jedi ]))
+      nodePackages.peerflix
+      discord
 
-    haskellPackages.xmobar
+      gcc
+      jetbrains.idea-community
+      androidsdk
+      android-studio
+      pypi2nix
+      haskellPackages.hlint
+      haskellPackages.tuple
+      (python3.withPackages(ps: with ps; [ virtualenv lldb jedi ]))
 
-    openjdk8
-  ];
+      haskellPackages.xmobar
+    ];
 
-  programs = {
-    git = {
-      enable = true;
-      userName = "Anton Plotnikov";
-      userEmail = "plotnikovanton@gmail.com";
-    };
-
-    neovim = {
-      enable = true;
-      configure = import ./vim/vim.nix;
-    };
-
-    rofi = {
-      enable = true;
-    };
-
-    zsh = {
-      enable = true;
-      oh-my-zsh = {
+    programs = {
+      git = {
         enable = true;
-        theme = "robbyrussell";
-        plugins = [ "zsh-syntax-highlighting" "git" "common-aliaces" "sudo"
-                    "systemd" "wd" "cp" "history-substring-search" ];
+        userName = "Anton Plotnikov";
+        userEmail = "plotnikovanton@gmail.com";
       };
 
-      sessionVariables = {
-        EDITOR = "nvim";
-        JAVA_HOME = "${pkgs.openjdk8}";
+      neovim = {
+        enable = true;
+        configure = import ./vim/vim.nix;
+      };
+
+      rofi = {
+        enable = true;
+      };
+
+      zsh = {
+        enable = true;
+        oh-my-zsh = {
+          enable = true;
+          theme = "robbyrussell";
+          plugins = [ "zsh-syntax-highlighting" "git" "common-aliaces" "sudo"
+                      "systemd" "wd" "cp" "history-substring-search" ];
+        };
+
+        sessionVariables = {
+          EDITOR = "nvim";
+          JAVA_HOME = "${pkgs.jdk}";
+        };
+      };
+
+      termite = { enable = true; } // (import ./termite.nix);
+
+      firefox = {
+        enable = true;
+        enableIcedTea = true;
+      };
+
+      home-manager = {
+        enable = true;
+        path = https://github.com/rycee/home-manager/archive/master.tar.gz;
       };
     };
 
-    termite = { enable = true; } // (import ./termite.nix);
+    services = {
+      screen-locker = {
+        enable = true;
+        lockCmd = "${pkgs.i3lock-pixeled}/bin/i3lock-pixeled";
+        inactiveInterval = 5;
+      };
 
-    firefox = {
-      enable = true;
-      enableIcedTea = true;
+      gpg-agent = {
+        enable = true;
+        defaultCacheTtl = 1800;
+      };
+
+      dunst = {
+        enable = true;
+        settings = import ./dunst.nix;
+      };
+
+  #    compton.enable = true;
+      syncthing.enable = true;
+      stalonetray = {
+        enable = true;
+        config = import ./stalonetray.nix;
+      };
     };
 
-    home-manager = {
+    xsession = {
       enable = true;
-      path = https://github.com/rycee/home-manager/archive/master.tar.gz;
+      windowManager.xmonad = {
+        enable = true;
+        enableContribAndExtras = true;
+        extraPackages = haskellPackages: [
+          haskellPackages.taffybar
+        ];
+      };
+      initExtra = ''
+        kbdd &
+        autorandr -c &
+        xbanish &
+        '';
     };
+
+    home.keyboard = {
+      layout = "us,ru";
+      variant = "dvp,diktor";
+    };
+    nixpkgs.config.allowUnfree = true;
   };
 
-  services = {
-    gpg-agent = {
-      enable = true;
-      defaultCacheTtl = 1800;
-    };
-
-    dunst = {
-      enable = true;
-      settings = import ./dunst.nix;
-    };
-
-#    compton.enable = true;
-    syncthing.enable = true;
-    stalonetray = {
-      enable = true;
-      config = import ./stalonetray.nix;
-    };
-  };
-
-  xsession = {
-    enable = true;
-    windowManager.xmonad = {
-      enable = true;
-      enableContribAndExtras = true;
-      extraPackages = haskellPackages: [
-        haskellPackages.taffybar
-      ];
-    };
-    initExtra = ''
-      kbdd &
-      autorandr -c &
-      xbanish &
-      '';
-  };
-
-  home.keyboard = {
-    layout = "us,ru";
-    variant = "dvp,diktor";
-  };
-}
+  overridesPath = ./overrides.nix;
+in
+  if builtins.pathExists overridesPath
+  then import overridesPath config
+  else config
