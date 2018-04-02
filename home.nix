@@ -23,6 +23,7 @@
     feh
     gthumb
     texlive.combined.scheme-full
+    mpv
 
     tdesktop
 
@@ -38,6 +39,8 @@
     arc-icon-theme
     arc-theme
     atom
+
+    jdk
 
     wine
     unzip
@@ -95,6 +98,12 @@
   };
 
   services = {
+    screen-locker = {
+      enable = true;
+      lockCmd = "${pkgs.i3lock-pixeled}/bin/i3lock-pixeled";
+      inactiveInterval = 5;
+    };
+
     gpg-agent = {
       enable = true;
       defaultCacheTtl = 1800;
@@ -135,6 +144,8 @@
   
   home.sessionVariables = {
     EDITOR = "nvim";
+    JAVA_HOME = pkgs.jdk;
+    JAVA_OPTS = "-Djavax.net.ssl.keyStore=/home/anton/keystore.jks";
   };
 
   nixpkgs.config.packageOverrides = super: rec {
