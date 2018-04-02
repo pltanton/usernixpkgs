@@ -29,6 +29,6 @@ with import <nixpkgs> {};
     { names = [ "flake8-vim" "deoplete-jedi" ]; ft_regex = "^python$"; }
     { name = "vim-addon-nix"; file_regex = "^nix$"; }
     { name = "vimtex"; ft_regex = "^tex$"; }
-    { names = [ "ghcmod" "neco-ghc" ]; ft_regex = "^haskell$"; }
+    { names = [ "ghcmod" "neco-ghc" "vimproc" ]; ft_regex = "^haskell$"; }
   ];
 }

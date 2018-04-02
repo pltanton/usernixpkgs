@@ -1,4 +1,3 @@
-
 { mkDerivation, base, cairo, ConfigFile, containers, dbus
 , directory, dyre, either, enclosed-exceptions, filepath, glib
 , gtk-traymanager, gtk3, HStringTemplate, HTTP, mtl, multimap
@@ -12,9 +11,9 @@ mkDerivation {
   pname = "taffybar";
   version = "1.0.0-pre";
   src = fetchFromGitHub {
-    owner = "benley";
+    owner = "travitch";
     repo = "taffybar";
-    rev = "6e481d257b3cb3d729113457160d19a29e371723";
+    rev = "1d089ea6a4663439f93b34ba747ddeba76cf5651";
     sha256 = "0hvjxh0n9csswddwnvax32j46kl49q28gk98ypnh3aaq815c3iyf";
   };
   isLibrary = true;

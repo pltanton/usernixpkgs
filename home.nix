@@ -23,13 +23,12 @@
     feh
     gthumb
     texlive.combined.scheme-full
+    mpv
 
     tdesktop
 
     tmux
     wget
-
-    taffybar
 
     lxappearance-gtk3
 
@@ -47,12 +46,16 @@
 
     gcc
     jetbrains.idea-community
+    androidsdk
+    android-studio
     pypi2nix
     haskellPackages.hlint
     haskellPackages.tuple
     (python3.withPackages(ps: with ps; [ virtualenv lldb jedi ]))
 
     haskellPackages.xmobar
+
+    openjdk8
   ];
 
   programs = {
@@ -78,6 +81,11 @@
         theme = "robbyrussell";
         plugins = [ "zsh-syntax-highlighting" "git" "common-aliaces" "sudo"
                     "systemd" "wd" "cp" "history-substring-search" ];
+      };
+
+      sessionVariables = {
+        EDITOR = "nvim";
+        JAVA_HOME = "${pkgs.openjdk8}";
       };
     };
 
@@ -105,11 +113,12 @@
       settings = import ./dunst.nix;
     };
 
-    taffybar = {
-      enable = true;
-    };
 #    compton.enable = true;
     syncthing.enable = true;
+    stalonetray = {
+      enable = true;
+      config = import ./stalonetray.nix;
+    };
   };
 
   xsession = {
@@ -125,31 +134,11 @@
       kbdd &
       autorandr -c &
       xbanish &
-    '';
+      '';
   };
 
   home.keyboard = {
     layout = "us,ru";
     variant = "dvp,diktor";
   };
-  
-  home.sessionVariables = {
-    EDITOR = "nvim";
-  };
-
-  nixpkgs.config.packageOverrides = super: rec {
-    haskellPackages = super.haskellPackages.override {
-      overrides = self: super: {
-        taffybar = self.callPackage ./pkgs/taffybar.nix {
-          pkgs_gtk3 = pkgs.gtk3;
-        };
-        gtk-traymanager = self.callPackage ./pkgs/traymanager.nix {
-          pkgs_gtk3 = pkgs.gtk3;
-        };
-      };
-    };
-    taffybar = super.taffybar.override (_: {
-    });
-  };
-  nixpkgs.config.allowUnfree = true;
 }
