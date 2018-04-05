@@ -34,7 +34,7 @@ let
         };
       };
 
-      termite = { enable = true; } // (import ./termite.nix);
+      termite = { enable = true; } // (import ./configs/termite.nix);
 
       firefox = {
         enable = true;
@@ -48,6 +48,12 @@ let
     };
 
     services = {
+      compton = { enable = true; } // import ./configs/compton.nix;
+
+      parcelitte = {
+        enable = true;
+      };
+
       screen-locker = {
         enable = true;
         lockCmd = "${pkgs.i3lock-pixeled}/bin/i3lock-pixeled";
@@ -61,13 +67,13 @@ let
 
       dunst = {
         enable = true;
-        settings = import ./dunst.nix;
+        settings = import ./configs/dunst.nix;
       };
 
       syncthing.enable = true;
       stalonetray = {
         enable = true;
-        config = import ./stalonetray.nix;
+        config = import ./configs/stalonetray.nix;
       };
     };
 
