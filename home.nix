@@ -3,79 +3,9 @@
 let
   config = {
     home.packages = import ./commonPackages.nix pkgs;
-    programs = {
-      git = {
-        enable = true;
-        userName = "Anton Plotnikov";
-        userEmail = "plotnikovanton@gmail.com";
-      };
 
-      neovim = {
-        enable = true;
-        configure = import ./vim/vim.nix;
-      };
-
-      rofi = {
-        enable = true;
-      };
-
-      zsh = {
-        enable = true;
-        oh-my-zsh = {
-          enable = true;
-          theme = "robbyrussell";
-          plugins = [ "zsh-syntax-highlighting" "git" "common-aliaces" "sudo"
-                      "systemd" "wd" "cp" "history-substring-search" ];
-        };
-
-        sessionVariables = {
-          EDITOR = "nvim";
-          JAVA_HOME = "${pkgs.jdk}";
-        };
-      };
-
-      termite = { enable = true; } // (import ./configs/termite.nix);
-
-      firefox = {
-        enable = true;
-        enableIcedTea = true;
-      };
-
-      home-manager = {
-        enable = true;
-        path = https://github.com/rycee/home-manager/archive/master.tar.gz;
-      };
-    };
-
-    services = {
-      compton = { enable = true; } // import ./configs/compton.nix;
-
-      parcelitte = {
-        enable = true;
-      };
-
-      screen-locker = {
-        enable = true;
-        lockCmd = "${pkgs.i3lock-pixeled}/bin/i3lock-pixeled";
-        inactiveInterval = 5;
-      };
-
-      gpg-agent = {
-        enable = true;
-        defaultCacheTtl = 1800;
-      };
-
-      dunst = {
-        enable = true;
-        settings = import ./configs/dunst.nix;
-      };
-
-      syncthing.enable = true;
-      stalonetray = {
-        enable = true;
-        config = import ./configs/stalonetray.nix;
-      };
-    };
+    programs = import ./programs.nix pkgs;
+    services = import ./services.nix pkgs;
 
     xsession = {
       enable = true;
