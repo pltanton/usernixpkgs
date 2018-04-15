@@ -32,4 +32,6 @@ with orig; {
 - [ ] Add and configure taffybar (when version 1+ would be at least in
   nixos-unstable channel)
 
-- [ ] Use colors from colors module
+- [ ] Rename colors to `.Xresources` (base-16) style, e.g. `color1`, `color2`
+
+- [x] Use colors from colors module

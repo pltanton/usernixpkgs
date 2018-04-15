@@ -1,4 +1,6 @@
-{
+let
+  colors = import ../modules/colors.nix;
+in {
   global = {
     font = "Hack 10";
     markup = "yes";
@@ -26,21 +28,21 @@
     separator_color = "frame";
     icon_position = "left";
     frame_width = 1;
-    frame_color = "#65737e";
+    frame_color = colors.gray;
   };
   urgency_low = {
     msg_urgency = "low";
-    background = "#2b303b";
-    foreground = "#c0c5ce";
+    background = colors.black;
+    foreground = colors.lightGray;
   };
   urgency_normal = {
     msg_urgency = "normal";
-    background = "#2b303b";
-    foreground = "#c0c5ce";
+    background = colors.black;
+    foreground = colors.lightGray;
   };
   urgency_critical = {
     msg_urgency = "critical";
-    background = "#bf616a";
+    background = colors.red;
     foreground = "#dfe1e8";
   };
 }
