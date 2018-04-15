@@ -10,7 +10,7 @@ pkgs:
   screen-locker = {
     enable = true;
     lockCmd = "${pkgs.i3lock-pixeled}/bin/i3lock-pixeled";
-    inactiveInterval = 5;
+    inactiveInterval = 15;
   };
 
   gpg-agent = {
