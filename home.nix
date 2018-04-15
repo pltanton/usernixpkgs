@@ -2,10 +2,17 @@
 
 let
   config = {
-    home.packages = import ./commonPackages.nix pkgs;
+    programs = import ./modules/programs.nix pkgs;
+    services = import ./modules/services.nix pkgs;
 
-    programs = import ./programs.nix pkgs;
-    services = import ./services.nix pkgs;
+    home = {
+      packages = import ./modules/commonPackages.nix pkgs;
+
+      keyboard = {
+        layout = "us,ru";
+        variant = "dvp,diktor";
+      };
+    };
 
     xsession = {
       enable = true;
@@ -13,7 +20,6 @@ let
         enable = true;
         enableContribAndExtras = true;
         extraPackages = haskellPackages: [
-          haskellPackages.taffybar
         ];
       };
       initExtra = ''
@@ -23,15 +29,11 @@ let
         '';
     };
 
-    home.keyboard = {
-      layout = "us,ru";
-      variant = "dvp,diktor";
-    };
     nixpkgs.config.allowUnfree = true;
   };
 
   overridesPath = ./overrides.nix;
 in
   if builtins.pathExists overridesPath
-  then config // import overridesPath config pkgs
+  then config // (import overridesPath config pkgs)
   else config

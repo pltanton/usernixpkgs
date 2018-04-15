@@ -1,5 +1,5 @@
 let
-  colors = import ../colors.nix;
+  colors = import ../modules/colors.nix;
 in {
   # font = "Terminus 18";
   scrollbar = false;
