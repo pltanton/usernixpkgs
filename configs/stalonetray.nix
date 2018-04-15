@@ -1,7 +1,7 @@
 {
   decorations = "none";
   dockapp_mode = "none";
-  geometry = "6x1+1250+12";
+  geometry = "6x1+1220+12";
   background = "#2b303b";
   kludges = "force_icons_size";
   grow_gravity = "NE";
