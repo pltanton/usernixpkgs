@@ -8,7 +8,6 @@ with pkgs; [
   arc-theme
   arandr
   maim
-  autorandr
   pavucontrol
   pass
   xbanish
@@ -21,6 +20,7 @@ with pkgs; [
   shared_mime_info
   feh
   tmux
+  dnsutils
 
   haskellPackages.xmobar
   taffybar
@@ -29,6 +29,10 @@ with pkgs; [
   wget
   htop
   unzip
+  p7zip
+
+  nixops
+  nix-deploy
 
   google-play-music-desktop-player 
   nodePackages.peerflix
