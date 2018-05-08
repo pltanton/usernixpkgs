@@ -30,5 +30,6 @@ with import <nixpkgs> {};
     { name = "vim-addon-nix"; file_regex = "^nix$"; }
     { name = "vimtex"; ft_regex = "^tex$"; }
     { names = [ "ghcmod" "neco-ghc" "vimproc" ]; ft_regex = "^haskell$"; }
+    { names = [ "autocomplete-flow" ]; ft_regex = "^jsx?$"; }
   ];
 }

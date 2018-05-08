@@ -48,6 +48,7 @@ with pkgs; [
 
   atom
   jdk
+  flow
   (python3.withPackages(ps: with ps; [ virtualenv lldb jedi ]))
 
   rofi-pass
