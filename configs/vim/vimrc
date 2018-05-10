@@ -119,3 +119,7 @@ autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 " Notes
 let g:notes_directories = ['~/syncthing/anton/notes']
 let g:notes_suffix = '.md'
+
+" Tabulation for filetypes
+autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2

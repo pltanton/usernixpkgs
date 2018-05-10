@@ -20,4 +20,14 @@ with import <nixpkgs> {};
       sha256 = "0rd9788dyfc58py50xbiaz5j7nphyvf3rpp3yal7yq2dhf0awwfi";
     };
   };
+
+  autocomplete-flow = pkgs.vimUtils.buildVimPlugin {
+    name = "autocomplete-flow";
+    src = pkgs.fetchFromGitHub {
+      owner = "wokalski";
+      repo = "autocomplete-flow";
+      rev = "5d6fb85866ec2edf1eecde823efd2bf471640f5d";
+      sha256 = "189g324cb54cks447n40fjci89l4smbq0i34qawrjmg0ng82hmf1";
+    };
+  };
 }

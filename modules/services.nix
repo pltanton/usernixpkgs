@@ -38,5 +38,7 @@ pkgs:
   taffybar = {
     enable = false;
   };
+
+  flameshot.enable = true;
 }
 
