@@ -1,7 +1,7 @@
 pkgs:
 
 {
-  compton = { enable = true; } // import ../configs/compton.nix;
+  compton = { enable = false; } // import ../configs/compton.nix;
 
   parcellite = {
     enable = true;
@@ -15,7 +15,7 @@ pkgs:
 
   gpg-agent = {
     enable = true;
-    defaultCacheTtl = 1800;
+    defaultCacheTtl = 18000;
   };
 
   dunst = {
@@ -36,7 +36,7 @@ pkgs:
   };
 
   taffybar = {
-    enable = true;
+    enable = false;
   };
 }
 

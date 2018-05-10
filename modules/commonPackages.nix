@@ -38,13 +38,16 @@ with pkgs; [
   gthumb
   mpv
 
-  pypi2nix
+  inetutils
+
+  xsane
+  system-config-printer
+
   haskellPackages.hlint
   haskellPackages.tuple
 
   atom
   jdk
-  (python3.withPackages(ps: with ps; [ virtualenv lldb jedi ]))
 
   rofi-pass
 ]

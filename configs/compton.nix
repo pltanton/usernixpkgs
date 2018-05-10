@@ -7,6 +7,7 @@
     "name = 'stalonetray'"
     "name = 'Screenshot'"
     "class_g = 'slop'"
+    "n:e:VirtualBox"
   ];
 
   opacityRule = [
@@ -26,5 +27,9 @@
     unredir-if-possible = true;
     sw-opti = true;
     paint-on-overlay = true;
+    wintypes:
+    {
+      tooltip = { fade = false; shadow = false; opacity = 1; };
+    };
   '';
 }
