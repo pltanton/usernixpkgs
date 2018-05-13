@@ -30,4 +30,14 @@ with import <nixpkgs> {};
       sha256 = "189g324cb54cks447n40fjci89l4smbq0i34qawrjmg0ng82hmf1";
     };
   };
+
+  deoplete-clang2 = pkgs.vimUtils.buildVimPlugin {
+    name = "deoplete-clang2";
+    src = pkgs.fetchFromGitHub {
+      owner = "tweekmonster";
+      repo = "deoplete-clang2";
+      rev = "8877dda0a474824977443a112cf0f4fa465e97f6";
+      sha256 = "1k8c2ph04fj2c5dqm6ky8jhr8g2srdpafapy102n46nksyyx0yhf";
+    };
+  };
 }

@@ -53,7 +53,12 @@ with pkgs; [
   atom
   jdk
   flow
-  python3
+
+  cmake
+  ctags
+  llvmPackages.clang
+
+  (python3.withPackages (pp: with pp; [ jedi flake8 grpcio]))
 
   rofi-pass
 ]

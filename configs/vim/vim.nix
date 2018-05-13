@@ -24,6 +24,9 @@ with import <nixpkgs> {};
 
       "vim-notes"
       "vim-misc"
+
+      "vim-easytags"
+      "tagbar"
     ]; }
     { names = [ "vim-go" "deoplete-go" ]; ft_regex = "^go$"; }
     { names = [ "flake8-vim" "deoplete-jedi" ]; ft_regex = "^python$"; }
@@ -31,5 +34,6 @@ with import <nixpkgs> {};
     { name = "vimtex"; ft_regex = "^tex$"; }
     { names = [ "ghcmod" "neco-ghc" "vimproc" ]; ft_regex = "^haskell$"; }
     { names = [ "autocomplete-flow" ]; ft_regex = "^jsx?$"; }
+    { names = [ "deoplete-clang2" ]; ft_regex = "^cpp$"; }
   ];
 }

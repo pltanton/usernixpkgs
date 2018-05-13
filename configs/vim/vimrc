@@ -122,4 +122,6 @@ let g:notes_suffix = '.md'
 
 " Tabulation for filetypes
 autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2
-autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
+
+" Tagbar
+nmap <F8> :TagbarToggle<CR>

@@ -27,12 +27,13 @@ pkgs:
       enable = true;
       theme = "robbyrussell";
       plugins = [ "zsh-syntax-highlighting" "git" "common-aliaces" "sudo"
-                  "systemd" "wd" "cp" "history-substring-search" ];
+                  "systemd" "wd" "cp" "history-substring-search" "nix-shell" ];
     };
 
     sessionVariables = {
       EDITOR = "nvim";
       JAVA_HOME = "${pkgs.jdk}";
+      NIX_BUILD_SHELL = "zsh";
     };
   };
 
