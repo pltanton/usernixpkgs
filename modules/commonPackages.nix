@@ -10,6 +10,7 @@ with pkgs; [
   maim
   pavucontrol
   pass
+  browserpass
   xbanish
   xclip
   pamixer
@@ -23,7 +24,6 @@ with pkgs; [
   dnsutils
 
   haskellPackages.xmobar
-  taffybar
 
   tdesktop
   wget
@@ -32,13 +32,16 @@ with pkgs; [
   p7zip
 
   nixops
-  nix-deploy
+  #nix-deploy
 
   google-play-music-desktop-player 
   nodePackages.peerflix
   evince
   gnome3.eog
+
   qutebrowser
+  qt5.qtmultimedia
+
   gthumb
   mpv
 
@@ -55,11 +58,16 @@ with pkgs; [
   flow
 
   cmake
+  gnumake
   ctags
   llvmPackages.clang
 
   (python3.withPackages (pp: with pp; [ jedi flake8 grpcio]))
+  gdb
 
   rofi-pass
+  ansible
+  chromium
+  blueman
 ]
 

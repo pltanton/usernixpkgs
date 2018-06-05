@@ -1,6 +1,8 @@
 { pkgs, ... }:
 
 let
+  pkgs-unstable = import <nixos-unstable> {};
+
   config = {
     programs = import ./modules/programs.nix pkgs;
     services = import ./modules/services.nix pkgs;

@@ -1,7 +1,15 @@
 pkgs:
 
 {
-  compton = { enable = false; } // import ../configs/compton.nix;
+  compton = { enable = true; } // import ../configs/compton.nix;
+
+  flameshot = {
+    enable = false;
+  };
+
+  udiskie = {
+    enable = true;
+  };
 
   parcellite = {
     enable = true;
@@ -36,7 +44,7 @@ pkgs:
   };
 
   taffybar = {
-    enable = false;
+    enable = true;
   };
 }
 

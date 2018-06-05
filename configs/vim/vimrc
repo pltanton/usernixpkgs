@@ -22,6 +22,7 @@ set splitbelow
 set splitright
 
 let mapleader="\<Space>"
+let maplocalleader=","
 
 " Indents
 set tabstop=4
@@ -61,6 +62,17 @@ nnoremap k gk
 "==============================================================================
 "=== SPECIAL VIM MAGIC
 "==============================================================================
+
+" Some utility functions
+function! Mapped(fn, l)
+    let new_list = deepcopy(a:l)
+    call map(new_list, string(a:fn) . '(v:val)')
+    return new_list
+endfunction
+
+function! AsExtRegex(str)
+	return '\.' . a:str . '$'
+endfunction
 
 " Switch to US layout on normal mode
 let g:layout='dvp'
@@ -108,10 +120,14 @@ let g:deoplete#enable_at_startup = 1
 " Airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
+let g:airline_theme = 'tomorrow'
 
 " NERD Tree
-let g:airline_theme = 'tomorrow'
 map <F10> :NERDTreeToggle<CR>
+let NERDTreeIgnore = Mapped(function("AsExtRegex"), [ 
+    \'aux', 'bcf', 'fdb_latexmk', 'fls', 'run\.xml', 'synctex\.gz', 'toc',
+    \'bbl', 'blg'
+\])
 
 " GHC Mod
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
@@ -125,3 +141,7 @@ autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
 " Tagbar
 nmap <F8> :TagbarToggle<CR>
+
+" Vimtex
+let g:tex_flavor = 'latex'
+let g:vimtex_enable = 1
