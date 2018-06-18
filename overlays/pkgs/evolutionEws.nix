@@ -10,7 +10,7 @@ let
     version = "${gnomeVersionBranch}.0";
     ewsSrc = fetchurl {
      url = "mirror://gnome/sources/evolution-ews/${gnomeVersionBranch}/evolution-ews-${version}.tar.xz";
-     sha256 = "15sxvijl3ni7qjxv9jha5vynfyqifq2gga0an9xhyy6bggsqnhwm";
+     sha256 = "0fnlmaakrivdrsk2ajvqhmsxskzmwf09xdp8klai57z7nv5y7r6w";
    };
    evolution_data_server = gnome3.evolution_data_server;
    evolution = gnome3.evolution;

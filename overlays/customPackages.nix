@@ -13,5 +13,5 @@ let
 in {
   evolution-ews = super.callPackage ./pkgs/evolutionEws.nix {};
   oh-my-zsh = import ./pkgs/oh-my-zsh.nix super;
-  tdesktop = mkTelegram telegramVersion;
+  # tdesktop = mkTelegram telegramVersion;
 }

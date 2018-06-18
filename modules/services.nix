@@ -34,7 +34,7 @@ pkgs:
   syncthing.enable = true;
 
   stalonetray = {
-    enable = true;
+    enable = false;
     config = import ../configs/stalonetray.nix;
   };
 

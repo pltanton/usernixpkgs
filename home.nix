@@ -16,12 +16,18 @@ let
       };
     };
 
+    qt = {
+      enable = true;
+      useGtkTheme = true;
+    };
+
     xsession = {
       enable = true;
       windowManager.xmonad = {
         enable = true;
         enableContribAndExtras = true;
-        extraPackages = haskellPackages: [
+        extraPackages = haskellPackages: with haskellPackages; [
+          taffybar
         ];
       };
       initExtra = ''
