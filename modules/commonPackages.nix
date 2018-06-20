@@ -2,15 +2,18 @@ pkgs:
 
 with pkgs; [
   kbdd
+
   lxappearance-gtk3
   gnome3.adwaita-icon-theme
+  hicolor-icon-theme
   arc-icon-theme
   arc-theme
+  paper-icon-theme
+
   arandr
   maim
   pavucontrol
   pass
-  browserpass
   xbanish
   xclip
   pamixer
@@ -22,8 +25,6 @@ with pkgs; [
   feh
   tmux
   dnsutils
-
-  haskellPackages.xmobar
 
   tdesktop
   wget
@@ -50,9 +51,6 @@ with pkgs; [
   xsane
   system-config-printer
 
-  haskellPackages.hlint
-  haskellPackages.tuple
-
   atom
   jdk
   flow
@@ -68,6 +66,13 @@ with pkgs; [
   rofi-pass
   ansible
   chromium
-  blueman
+
+  xfce.tumbler
+  xfce.thunar
+  ffmpegthumbnailer
+  light
+  pamixer
+  pass
+  pavucontrol
 ]
 
