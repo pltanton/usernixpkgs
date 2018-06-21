@@ -16,6 +16,18 @@ let
       };
     };
 
+    gtk = {
+      enable = true;
+      theme = {
+        package = pkgs.arc-theme;
+        name = "Arc-Dark";
+      };
+      iconTheme = {
+        package = pkgs.paper-icon-theme;
+        name = "Paper";
+      };
+    };
+
     qt = {
       enable = true;
       useGtkTheme = true;
@@ -23,6 +35,11 @@ let
 
     xsession = {
       enable = true;
+      pointerCursor = {
+        package = pkgs.paper-icon-theme;
+        name = "Paper";
+        size = 16;
+      };
       windowManager.xmonad = {
         enable = true;
         enableContribAndExtras = true;
@@ -34,6 +51,7 @@ let
         kbdd &
         autorandr -c &
         xbanish &
+        clipit &
         '';
     };
 

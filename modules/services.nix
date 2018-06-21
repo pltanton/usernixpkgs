@@ -11,10 +11,6 @@ pkgs:
     enable = true;
   };
 
-  parcellite = {
-    enable = true;
-  };
-
   screen-locker = {
     enable = true;
     lockCmd = "${pkgs.i3lock-pixeled}/bin/i3lock-pixeled";
@@ -34,17 +30,13 @@ pkgs:
   syncthing.enable = true;
 
   stalonetray = {
-    enable = false;
+    enable = true;
     config = import ../configs/stalonetray.nix;
   };
 
   random-background = {
     enable = true;
     imageDirectory = "%h/.config/nixpkgs/backgrounds";
-  };
-
-  taffybar = {
-    enable = true;
   };
 }
 

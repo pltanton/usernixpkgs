@@ -2,13 +2,11 @@ pkgs:
 
 with pkgs; [
   kbdd
+  haskellPackages.xmobar
+  clipit
 
-  lxappearance-gtk3
   gnome3.adwaita-icon-theme
   hicolor-icon-theme
-  arc-icon-theme
-  arc-theme
-  paper-icon-theme
 
   arandr
   maim
@@ -51,7 +49,6 @@ with pkgs; [
   xsane
   system-config-printer
 
-  atom
   jdk
   flow
 
