@@ -3,13 +3,8 @@ pkgs:
 {
   compton = { enable = true; } // import ../configs/compton.nix;
 
-  flameshot = {
-    enable = false;
-  };
-
-  udiskie = {
-    enable = true;
-  };
+  udiskie.enable = true;
+  taffybar.enable = false;
 
   screen-locker = {
     enable = true;
