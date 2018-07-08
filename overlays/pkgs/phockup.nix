@@ -11,7 +11,7 @@ stdenv.mkDerivation rec {
     sha256 = "0nwkp92aqvg6i8gb91wi0zm6nhffw8a1ii56jlqmmkskg99anqjr";
   };
 
-  bulidInputs = [ python36 exiftool ];
+  propagatedBuildInputs = [ python36 exiftool ];
 
   installPhase = ''
     mkdir -p $out/opt

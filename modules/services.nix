@@ -6,6 +6,8 @@ pkgs:
   udiskie.enable = true;
   taffybar.enable = false;
 
+  network-manager-applet.enable = true;
+
   screen-locker = {
     enable = true;
     lockCmd = "${pkgs.i3lock-pixeled}/bin/i3lock-pixeled";
