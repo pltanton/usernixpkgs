@@ -3,6 +3,8 @@ pkgs:
 with pkgs; [
   kbdd
   haskellPackages.xmobar
+  # haskellPackages.gtk-sni-tray
+  taffybar
   clipit
 
   gnome3.adwaita-icon-theme
@@ -23,6 +25,9 @@ with pkgs; [
   feh
   tmux
   dnsutils
+
+  networkmanagerapplet
+  pasystray
 
   tdesktop
   wget
