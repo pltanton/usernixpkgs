@@ -40,4 +40,14 @@ with import <nixpkgs> {};
       sha256 = "1k8c2ph04fj2c5dqm6ky8jhr8g2srdpafapy102n46nksyyx0yhf";
     };
   };
+
+  vim-jsx = pkgs.vimUtils.buildVimPlugin {
+    name = "vim-jsx";
+    src = pkgs.fetchFromGitHub {
+      owner = "mxw";
+      repo = "vim-jsx";
+      rev = "52ee8bb9f4b53e9bcb38c95f9839ec983bcf7f9d";
+      sha256 = "0widi2gnxvdfzhhn0digcjqb28npxv0dpm3l37ijklcfxbc16hzi";
+    };
+  };
 }

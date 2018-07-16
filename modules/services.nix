@@ -34,6 +34,8 @@ pkgs:
     config = import ../configs/stalonetray.nix;
   };
 
+  taffybar.enable = true;
+
   random-background = {
     enable = true;
     imageDirectory = "%h/.config/nixpkgs/backgrounds";

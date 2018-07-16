@@ -12,7 +12,7 @@ let
 
       keyboard = {
         layout = "us,ru";
-        variant = "dvp,diktor";
+        variant = "dvp,";
       };
     };
 

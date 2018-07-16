@@ -34,9 +34,10 @@ with pkgs; [
   #nix-deploy
 
   google-play-music-desktop-player 
-  nodePackages.peerflix
   evince
   gnome3.eog
+
+  nodePackages.peerflix
 
   qutebrowser
   qt5.qtmultimedia
