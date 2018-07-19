@@ -35,6 +35,8 @@ with pkgs; [
   unzip
   p7zip
 
+  nfs-utils
+
   nixops
   #nix-deploy
 

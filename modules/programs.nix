@@ -46,8 +46,8 @@ pkgs:
 
   home-manager = {
     enable = true;
-    path = https://github.com/rycee/home-manager/archive/master.tar.gz;
-    #path = https://github.com/pltanton/home-manager/archive/master.tar.gz;
+    #path = https://github.com/rycee/home-manager/archive/master.tar.gz;
+    path = "/home/anton/workdir/home-manager";
   };
 }
 
