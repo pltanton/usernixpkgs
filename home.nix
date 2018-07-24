@@ -42,10 +42,12 @@ let
       };
       windowManager.xmonad = {
         enable = true;
-        enableContribAndExtras = true;
         extraPackages = haskellPackages: with haskellPackages; [
           taffybar
+          xmonad-extras
+          xmonad-contrib
         ];
+
       };
       initExtra = ''
         kbdd &
