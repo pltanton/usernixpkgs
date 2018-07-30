@@ -3,17 +3,18 @@ pkgs:
 {
   compton = { enable = true; } // import ../configs/compton.nix;
 
-  taffybar.enable = true;
+  taffybar = {
+    enable = true;
+  };
+
   status-notifier-watcher.enable = true;
 
   udiskie = {
     enable = true;
-    sni = true;
   };
 
   network-manager-applet = {
     enable = true;
-    sni = true;
   };
 
   screen-locker = {

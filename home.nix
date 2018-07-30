@@ -1,8 +1,6 @@
 { pkgs, ... }:
 
 let
-  pkgs-unstable = import <nixos-unstable> {};
-
   config = {
     programs = import ./modules/programs.nix pkgs;
     services = import ./modules/services.nix pkgs;
@@ -35,6 +33,7 @@ let
 
     xsession = {
       enable = true;
+      preferStatusNotifierItems = true;
       pointerCursor = {
         package = pkgs.paper-icon-theme;
         name = "Paper";
@@ -49,6 +48,11 @@ let
         ];
 
       };
+
+      profileExtra = ''
+        systemctl --user import-environment GDK_PIXBUF_MODULE_FILE
+      '';
+
       initExtra = ''
         kbdd &
         autorandr -c &
