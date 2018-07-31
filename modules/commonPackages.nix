@@ -1,6 +1,6 @@
-pkgs:
+pkgs: pkgsMaster:
 
-with pkgs; [
+(with pkgs; [
   kbdd
   haskellPackages.xmobar
   # haskellPackages.gtk-sni-tray
@@ -79,5 +79,7 @@ with pkgs; [
   pamixer
   pass
   pavucontrol
-]
+]) ++ (with pkgsMaster; [
+  passff-host
+])
 

@@ -1,12 +1,13 @@
 { pkgs, ... }:
 
 let
+  pkgsMaster = import <nixpkgs-master> {};
   config = {
     programs = import ./modules/programs.nix pkgs;
     services = import ./modules/services.nix pkgs;
 
     home = {
-      packages = import ./modules/commonPackages.nix pkgs;
+      packages = import ./modules/commonPackages.nix pkgs pkgsMaster;
 
       keyboard = {
         layout = "us,ru";
@@ -58,6 +59,8 @@ let
         autorandr -c &
         xbanish &
         clipit &
+
+        ln -sf ${pkgsMaster.passff-host}/share/passff-host/passff.json $HOME/.mozilla/native-messaging-hosts/
         '';
     };
 
@@ -67,5 +70,5 @@ let
   overridesPath = ./overrides.nix;
 in
   if builtins.pathExists overridesPath
-  then config // (import overridesPath config pkgs)
+  then config // (import overridesPath config pkgs pkgsMaster)
   else config
