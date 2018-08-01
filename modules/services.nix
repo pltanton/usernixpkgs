@@ -3,19 +3,14 @@ pkgs:
 {
   compton = { enable = true; } // import ../configs/compton.nix;
 
-  taffybar = {
-    enable = true;
-  };
-
-  status-notifier-watcher.enable = true;
+  taffybar.enable = false;
+  status-notifier-watcher.enable = false;
+  network-manager-applet.enable = false;
 
   udiskie = {
     enable = true;
   };
 
-  network-manager-applet = {
-    enable = true;
-  };
 
   screen-locker = {
     enable = true;
@@ -33,7 +28,7 @@ pkgs:
     settings = import ../configs/dunst.nix;
   };
 
-  syncthing.enable = true;
+  syncthing.enable = false;
 
   stalonetray = {
     enable = false;

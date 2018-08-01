@@ -34,7 +34,7 @@ let
 
     xsession = {
       enable = true;
-      preferStatusNotifierItems = true;
+      preferStatusNotifierItems = false;
       pointerCursor = {
         package = pkgs.paper-icon-theme;
         name = "Paper";
@@ -55,7 +55,6 @@ let
       '';
 
       initExtra = ''
-        kbdd &
         autorandr -c &
         xbanish &
         clipit &
