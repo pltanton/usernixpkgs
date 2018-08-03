@@ -1,7 +1,9 @@
 { pkgs, ... }:
 
 let
-  pkgsMaster = import <nixpkgs-master> {};
+  masterTar = builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/master.tar.gz;
+  pkgsMaster = import masterTar {};
+
   config = {
     programs = import ./modules/programs.nix pkgs;
     services = import ./modules/services.nix pkgs;
