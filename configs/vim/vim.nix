@@ -20,6 +20,7 @@ with import <nixpkgs> {};
 
       "airline"
       "vim-colorschemes"
+      "base16-vim"
       "vim-airline-themes"
 
       "vim-notes"

@@ -3,9 +3,9 @@ pkgs: pkgsMaster:
 (with pkgs; [
   kbdd
   haskellPackages.xmobar
-  # haskellPackages.gtk-sni-tray
-  taffybar
   clipit
+
+  kitty
 
   gnome3.adwaita-icon-theme
   hicolor-icon-theme
@@ -26,7 +26,6 @@ pkgs: pkgsMaster:
   dnsutils
 
   networkmanagerapplet
-  pasystray
 
   tdesktop
   wget
@@ -57,8 +56,6 @@ pkgs: pkgsMaster:
   system-config-printer
 
   jdk
-  flow
-
   cmake
   gnumake
   ctags
