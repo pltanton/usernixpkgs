@@ -7,10 +7,7 @@ pkgs:
   status-notifier-watcher.enable = false;
   network-manager-applet.enable = false;
 
-  udiskie = {
-    enable = true;
-  };
-
+  udiskie.enable = true;
 
   screen-locker = {
     enable = true;

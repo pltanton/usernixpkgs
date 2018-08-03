@@ -13,7 +13,6 @@ pkgs: pkgsMaster:
   arandr
   maim
   pavucontrol
-  pass
   xbanish
   xclip
   pamixer
@@ -68,7 +67,10 @@ pkgs: pkgsMaster:
   (python3.withPackages (pp: with pp; [ jedi flake8 grpcio]))
   gdb
 
+  pass
+  passff-host
   rofi-pass
+
   ansible
   chromium
 
@@ -77,9 +79,7 @@ pkgs: pkgsMaster:
   ffmpegthumbnailer
   light
   pamixer
-  pass
   pavucontrol
 ]) ++ (with pkgsMaster; [
-  passff-host
 ])
 
