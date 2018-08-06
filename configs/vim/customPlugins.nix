@@ -61,13 +61,13 @@ with import <nixpkgs> {};
     };
   };
 
-  kotlin-vim = pkgs.vimUtils.buildVimPlugin {
-    name = "kotlin-vim";
+  kotlin = pkgs.vimUtils.buildVimPlugin {
+    name = "kotlin";
     src = pkgs.fetchFromGitHub {
       owner = "udalov";
       repo = "kotlin-vim";
       rev = "cf0f4814b9500f16c42b799393fbb621c308f2a0";
-      sha256 = "1vvjll44596905m9yxp33ac9sx2nq8l3kli2wjxi82hdah3xc3sm";
+      sha256 = "18p09nfh3a7ccjqf73rffyla09g4ikfsc1zmxn9g8hs7f5x8ljj6";
     };
   };
 }

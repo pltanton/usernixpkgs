@@ -27,10 +27,9 @@ with import <nixpkgs> {};
       "vim-easytags"
       "tagbar"
       "ale"
-
-      "kotlin-vim"
     ]; }
     { names = [ "vim-go" "deoplete-go" ]; ft_regex = "^go$"; }
+    { names = [ "kotlin" ]; ft_regex = "^kt$"; }
     { names = [ "flake8-vim" "deoplete-jedi" ]; ft_regex = "^python$"; }
     { name = "vim-addon-nix"; file_regex = "^nix$"; }
     { name = "vimtex"; ft_regex = "^tex$"; }
