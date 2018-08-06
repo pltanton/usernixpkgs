@@ -1,82 +1,83 @@
 pkgs: pkgsMaster:
 
 (with pkgs; [
-  kbdd
-  haskellPackages.xmobar
+  ###################
+  # Packages for DE #
+  ###################
+  # xdotool
+  arandr
   clipit
+  ffmpegthumbnailer
+  haskellPackages.xmobar
+  kbdd
+  libnotify
+  light
+  maim
+  networkmanagerapplet
+  pamixer
+  pamixer
+  pavucontrol
+  pavucontrol
+  shared_mime_info
+  xbanish
+  xclip
+  xfce.thunar
+  xfce.tumbler
+  xkblayout-state
+  xorg.xbacklight
 
-  kitty
 
+  #################
+  # Look and feel #
+  #################
   gnome3.adwaita-icon-theme
   hicolor-icon-theme
 
-  arandr
-  maim
-  pavucontrol
-  xbanish
-  xclip
-  pamixer
-  libnotify
-  xdotool
-  xkblayout-state
-  xorg.xbacklight
-  shared_mime_info
-  feh
-  tmux
+
+  #############
+  # User apps #
+  #############
+  # CLI utils
+  ansible
   dnsutils
-
-  networkmanagerapplet
-
-  tdesktop
-  wget
   htop
-  unzip
-  p7zip
-
-  nfs-utils
-
-  nixops
-  #nix-deploy
-
-  google-play-music-desktop-player 
-  evince
-  gnome3.eog
-
-  nodePackages.peerflix
-
-  qutebrowser
-  qt5.qtmultimedia
-
-  gthumb
-  mpv
-
   inetutils
-
-  xsane
-  system-config-printer
-
-  jdk
-  cmake
-  gnumake
-  ctags
-  llvmPackages.clang
-
-  (python3.withPackages (pp: with pp; [ jedi flake8 grpcio]))
-  gdb
-
+  nfs-utils
+  nodePackages.peerflix
+  p7zip
   pass
   passff-host
+  tmux
+  unzip
+  wget
+
+  # GUI
+  evince
+  feh
+  gnome3.eog
+  google-play-music-desktop-player 
+  gthumb
+  kitty
+  mpv
   rofi-pass
+  system-config-printer
+  tdesktop
+  xsane
 
-  ansible
+  # Web
   chromium
+  qt5.qtmultimedia
+  qutebrowser
 
-  xfce.tumbler
-  xfce.thunar
-  ffmpegthumbnailer
-  light
-  pamixer
-  pavucontrol
+  # Dev
+  jdk
+  #cmake
+  #gnumake
+  #ctags
+  #llvmPackages.clang
+  #gdb
+  (python3.withPackages (pp: with pp; [ jedi flake8 grpcio]))
+
 ]) ++ (with pkgsMaster; [
 ])
 

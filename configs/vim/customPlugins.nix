@@ -50,4 +50,15 @@ with import <nixpkgs> {};
       sha256 = "0widi2gnxvdfzhhn0digcjqb28npxv0dpm3l37ijklcfxbc16hzi";
     };
   };
+
+  oceanic-next = pkgs.vimUtils.buildVimPlugin {
+    name = "oceanic-next";
+    src = pkgs.fetchFromGitHub {
+      owner = "mhartington";
+      repo = "oceanic-next";
+      rev = "021c281ba959d4ba91bdf7dca4cae47a35789386";
+      sha256 = "1vvjll44596905m9yxp33ac9sx2nq8l3kli2wjxi82hdah3xc3sm";
+    };
+  };
 }
+

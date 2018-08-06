@@ -49,7 +49,6 @@ let
           xmonad-extras
           xmonad-contrib
         ];
-
       };
 
       profileExtra = ''
@@ -61,7 +60,7 @@ let
         xbanish &
         clipit &
 
-        ln -sf ${pkgsMaster.passff-host}/share/passff-host/passff.json $HOME/.mozilla/native-messaging-hosts/
+        ln -sf ${pkgs.passff-host}/share/passff-host/passff.json $HOME/.mozilla/native-messaging-hosts/
         '';
     };
 
