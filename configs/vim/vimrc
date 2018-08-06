@@ -146,6 +146,5 @@ nmap <F8> :TagbarToggle<CR>
 let g:tex_flavor = 'latex'
 let g:vimtex_enable = 1
 
-
-" Neomake
-let g:neomake_javascript_eslint_exe = $PWD .'/node_modules/.bin/eslint'
+" ALE
+let g:ale_completion_enabled = 1

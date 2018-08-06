@@ -8,7 +8,6 @@ with import <nixpkgs> {};
       "Tabular"
       "surround"
 
-      "neomake"
       "deoplete-nvim"
 
       "The_NERD_tree"
@@ -27,6 +26,9 @@ with import <nixpkgs> {};
 
       "vim-easytags"
       "tagbar"
+      "ale"
+
+      "kotlin-vim"
     ]; }
     { names = [ "vim-go" "deoplete-go" ]; ft_regex = "^go$"; }
     { names = [ "flake8-vim" "deoplete-jedi" ]; ft_regex = "^python$"; }
