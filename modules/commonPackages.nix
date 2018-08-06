@@ -71,11 +71,11 @@ pkgs: pkgsMaster:
 
   # Dev
   jdk
-  #cmake
-  #gnumake
-  #ctags
-  #llvmPackages.clang
-  #gdb
+  cmake
+  gnumake
+  ctags
+  llvmPackages.clang
+  gdb
   (python3.withPackages (pp: with pp; [ jedi flake8 grpcio]))
 
 ]) ++ (with pkgsMaster; [
