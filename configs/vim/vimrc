@@ -148,3 +148,5 @@ let g:vimtex_enable = 1
 
 " ALE
 let g:ale_completion_enabled = 1
+let g:ale_kotlin_languageserver_executable = '/home/anton/tmp/kotlin-language-server-0.1.1/bin/kotlin-language-server'
+

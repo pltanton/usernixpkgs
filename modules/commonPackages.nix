@@ -47,6 +47,7 @@ pkgs: pkgsMaster:
   p7zip
   pass
   passff-host
+  ranger
   tmux
   unzip
   wget
