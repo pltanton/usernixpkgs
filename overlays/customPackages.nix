@@ -13,4 +13,19 @@ self: super:
     propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ 
       [ super.pythonPackages.pillow ];
   });
+  haskellPackages = super.haskellPackages.override {
+    overrides = _self: _super: rec {
+      xmonad-contrib = super.haskellPackages.xmonad-contrib.overrideAttrs (old: rec {
+        version = "0.14";
+        src = super.fetchFromGitHub {
+          owner = "xmonad";
+          repo = "xmonad-contrib";
+          rev = "v0.14";
+          sha256 = "0y7nwl3i5df1p6i76r9yyhpnbnz9847pbnf8jj000g274ysdmkgr";
+        };
+        # propagatedBuildInputs = old.propagatedBuildInputs ++ [ _self.semigroups ];
+        patches = [];
+      });
+    };
+  };
 }
