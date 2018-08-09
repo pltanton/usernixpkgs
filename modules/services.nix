@@ -3,9 +3,9 @@ pkgs:
 {
   compton = { enable = true; } // import ../configs/compton.nix;
 
-  taffybar.enable = true;
-  status-notifier-watcher.enable = true;
-  network-manager-applet.enable = true;
+  taffybar.enable = false;
+  status-notifier-watcher.enable = false;
+  network-manager-applet.enable = false;
 
   udiskie.enable = true;
 
