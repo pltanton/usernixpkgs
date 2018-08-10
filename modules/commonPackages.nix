@@ -8,7 +8,6 @@ pkgs: pkgsMaster:
   arandr
   clipit
   ffmpegthumbnailer
-  haskellPackages.xmobar
   kbdd
   libnotify
   light
@@ -55,6 +54,7 @@ pkgs: pkgsMaster:
   # GUI
   evince
   feh
+  polybar
   gnome3.eog
   google-play-music-desktop-player 
   gthumb
@@ -80,5 +80,6 @@ pkgs: pkgsMaster:
   (python3.withPackages (pp: with pp; [ jedi flake8 grpcio]))
 
 ]) ++ (with pkgsMaster; [
+  haskellPackages.xmobar
 ])
 
