@@ -24,6 +24,9 @@ pkgs: pkgsMaster:
   xfce.tumbler
   xkblayout-state
   xorg.xbacklight
+  font-awesome_4
+  font-awesome_5
+  siji
 
 
   #################
@@ -37,6 +40,7 @@ pkgs: pkgsMaster:
   # User apps #
   #############
   # CLI utils
+  killall
   ansible
   dnsutils
   htop
@@ -52,6 +56,7 @@ pkgs: pkgsMaster:
   wget
 
   # GUI
+  vlc
   evince
   feh
   polybar

@@ -7,6 +7,8 @@
     "name = 'stalonetray'"
     "name = 'Screenshot'"
     "class_g = 'slop'"
+    "class_i = 'polybar'"
+    "class_i = 'tray'"
     "n:e:VirtualBox"
   ];
 

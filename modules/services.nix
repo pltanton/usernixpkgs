@@ -5,8 +5,8 @@ pkgs:
 
   taffybar.enable = false;
   status-notifier-watcher.enable = false;
-  network-manager-applet.enable = false;
 
+  network-manager-applet.enable = true;
   udiskie.enable = true;
 
   screen-locker = {
