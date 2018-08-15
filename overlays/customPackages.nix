@@ -3,7 +3,7 @@ self: super:
   evolution-ews = super.callPackage ./pkgs/evolutionEws.nix {};
   oh-my-zsh = import ./pkgs/oh-my-zsh.nix super;
   phockup = import ./pkgs/phockup.nix super; 
-  ranger = super.ranger.overrideAttrs (oldAttrs: rec {
+  ranger_git = super.ranger.overrideAttrs (oldAttrs: rec {
     src = super.fetchFromGitHub {
       owner = "ranger";
       repo = "ranger";

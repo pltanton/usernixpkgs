@@ -72,6 +72,7 @@ stdenv.mkDerivation rec {
     popd
     fixupPhase
     echo "### Done"
+    rm $out/share/glib-2.0/schemas/gschemas.compiled
   '';
 
   meta = with stdenv.lib; {

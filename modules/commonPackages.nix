@@ -4,10 +4,11 @@ pkgs: pkgsMaster:
   ###################
   # Packages for DE #
   ###################
-  # xdotool
   arandr
   clipit
   ffmpegthumbnailer
+  font-awesome_4
+  font-awesome_5
   kbdd
   libnotify
   light
@@ -18,15 +19,14 @@ pkgs: pkgsMaster:
   pavucontrol
   pavucontrol
   shared_mime_info
+  siji
   xbanish
   xclip
+  xdotool
   xfce.thunar
   xfce.tumbler
   xkblayout-state
   xorg.xbacklight
-  font-awesome_4
-  font-awesome_5
-  siji
 
 
   #################
