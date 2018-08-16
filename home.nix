@@ -9,8 +9,10 @@ let
     programs = import ./modules/programs.nix pkgs;
     services = import ./modules/services.nix pkgs;
 
+
     home = {
       packages = import ./modules/commonPackages.nix pkgs pkgsMaster;
+      file = import ./modules/files.nix pkgs;
 
       keyboard = {
         layout = "us,ru";
