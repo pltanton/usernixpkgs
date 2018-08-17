@@ -32,4 +32,34 @@ rec {
   blue          = base13;
   purple        = base14;
   darkRed       = base15;
+
+  xresourcesMap = {
+    foreground  = base5;
+    background  = base0;
+    cursorColor = base5;
+
+    color0      = base0;
+    color1      = base8;
+    color2      = base11;
+    color3      = base10;
+    color4      = base13;
+    color5      = base14;
+    color6      = base12;
+    color7      = base5;
+
+    color8      = base3;
+    color9      = base8;
+    color10     = base11;
+    color11     = base10;
+    color12     = base13;
+    color13     = base14;
+    color14     = base12;
+    color15     = base7;
+    color16     = base9;
+    color17     = base15;
+    color18     = base1;
+    color19     = base2;
+    color20     = base4;
+    color21     = base6;
+  };
 }

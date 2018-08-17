@@ -12,7 +12,7 @@ let
 
     home = {
       packages = import ./modules/commonPackages.nix pkgs pkgsMaster;
-      file = import ./modules/files.nix pkgs;
+      file = import ./modules/files.nix pkgs colors;
 
       keyboard = {
         layout = "us,ru";
@@ -39,34 +39,31 @@ let
 
     xresources = {
       properties = {
-        "*.foreground"  = colors.base5;
-        "*.background"  = colors.base0;
-        "*.cursorColor" = colors.base5;
-
-        "*.color0"      = colors.base0;
-        "*.color1"      = colors.base8;
-        "*.color2"      = colors.base11;
-        "*.color3"      = colors.base10;
-        "*.color4"      = colors.base13;
-        "*.color5"      = colors.base14;
-        "*.color6"      = colors.base12;
-        "*.color7"      = colors.base5;
-
-        "*.color8"      = colors.base3;
-        "*.color9"      = colors.base8;
-        "*.color10"     = colors.base11;
-        "*.color11"     = colors.base10;
-        "*.color12"     = colors.base13;
-        "*.color13"     = colors.base14;
-        "*.color14"     = colors.base12;
-        "*.color15"     = colors.base7;
-        "
-        *.color16"      = colors.base9;
-        "*.color17"     = colors.base15;
-        "*.color18"     = colors.base1;
-        "*.color19"     = colors.base2;
-        "*.color20"     = colors.base4;
-        "*.color21"     = colors.base6;
+        "*.foreground"  = colors.xresourcesMap.foreground;
+        "*.background"  = colors.xresourcesMap.background;
+        "*.cursorColor" = colors.xresourcesMap.cursorColor;
+        "*.color0"      = colors.xresourcesMap.color0;
+        "*.color1"      = colors.xresourcesMap.color1;
+        "*.color2"      = colors.xresourcesMap.color2;
+        "*.color3"      = colors.xresourcesMap.color3;
+        "*.color4"      = colors.xresourcesMap.color4;
+        "*.color5"      = colors.xresourcesMap.color5;
+        "*.color6"      = colors.xresourcesMap.color6;
+        "*.color7"      = colors.xresourcesMap.color7;
+        "*.color8"      = colors.xresourcesMap.color8;
+        "*.color9"      = colors.xresourcesMap.color9;
+        "*.color10"     = colors.xresourcesMap.color10;
+        "*.color11"     = colors.xresourcesMap.color11;
+        "*.color12"     = colors.xresourcesMap.color12;
+        "*.color13"     = colors.xresourcesMap.color13;
+        "*.color14"     = colors.xresourcesMap.color14;
+        "*.color15"     = colors.xresourcesMap.color15;
+        "*.color16"     = colors.xresourcesMap.color16;
+        "*.color17"     = colors.xresourcesMap.color17;
+        "*.color18"     = colors.xresourcesMap.color18;
+        "*.color19"     = colors.xresourcesMap.color19;
+        "*.color20"     = colors.xresourcesMap.color20;
+        "*.color21"     = colors.xresourcesMap.color21;
       };
     };
 
