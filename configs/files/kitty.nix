@@ -5,8 +5,8 @@ font_size 13
 
 background ${colors.xresourcesMap.background}
 foreground ${colors.xresourcesMap.foreground}
-selection_background ${colors.xresourcesMap.background}
-selection_foreground ${colors.xresourcesMap.foreground}
+selection_background ${colors.xresourcesMap.foreground}
+selection_foreground ${colors.xresourcesMap.background}
 url_color ${colors.base4}
 cursor ${colors.base5}
 

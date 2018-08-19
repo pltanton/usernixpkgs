@@ -49,6 +49,7 @@ pkgs: pkgsMaster:
   nodePackages.peerflix
   p7zip
   pass
+  gopass
   passff-host
   ranger
   tmux

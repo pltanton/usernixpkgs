@@ -31,6 +31,7 @@ pkgs:
     };
 
     sessionVariables = {
+      SDL_GAMECONTROLLERCONFIG="050000005e040000fd02000003090000,Xbox Wireless Controller,platform:Linux,x:b3,a:b0,b:b1,y:b4,start:b11,dpleft:h0.8,dpdown:h0.0,dpdown:h0.4,dpright:h0.0,dpright:h0.2,dpup:h0.0,dpup:h0.1,leftshoulder:b6,lefttrigger:a5,rightshoulder:b7,righttrigger:a4,leftstick:b13,rightstick:b14,leftx:a0,lefty:a1,rightx:a2,righty:a3,";
       EDITOR = "nvim";
       JAVA_HOME = "${pkgs.jdk}";
       NIX_BUILD_SHELL = "zsh";
