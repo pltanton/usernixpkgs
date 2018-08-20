@@ -5,6 +5,8 @@ let
   pkgsMaster = import masterTar {};
   colors = import ./modules/colors.nix;
 
+  xkbcomp = import ./modules/xkbcomp.nix pkgs;
+
   config = {
     programs = import ./modules/programs.nix pkgs;
     services = import ./modules/services.nix pkgs;
@@ -64,6 +66,8 @@ let
         autorandr -c &
         xbanish &
         clipit &
+
+        ${xkbcomp}
         '';
     };
 
