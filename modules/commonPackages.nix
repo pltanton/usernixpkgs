@@ -27,6 +27,7 @@ pkgs: pkgsMaster:
   xfce.tumbler
   xkblayout-state
   xorg.xbacklight
+  myxkbutil
 
 
   #################

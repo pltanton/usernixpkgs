@@ -5,8 +5,6 @@ let
   pkgsMaster = import masterTar {};
   colors = import ./modules/colors.nix;
 
-  xkbcomp = import ./modules/xkbcomp.nix pkgs;
-
   config = {
     programs = import ./modules/programs.nix pkgs;
     services = import ./modules/services.nix pkgs;
@@ -15,11 +13,6 @@ let
     home = {
       packages = import ./modules/commonPackages.nix pkgs pkgsMaster;
       file = import ./modules/files.nix pkgs colors;
-
-      keyboard = {
-        layout = "us,ru";
-        variant = "dvp,";
-      };
     };
 
     gtk = {
@@ -67,7 +60,7 @@ let
         xbanish &
         clipit &
 
-        ${xkbcomp}
+        ${pkgs.myxkbutil}/bin/xkb-dvp-diktor
         '';
     };
 
