@@ -4,7 +4,7 @@
 // russian Diktor layout.
 // License: MIT
 partial alphanumeric_keys xkb_symbols "diktor" {
-    include "ru(common)"
+    include "us(dvp)"
     name[Group1]= "Diktor";
 
 
