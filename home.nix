@@ -18,8 +18,8 @@ let
     gtk = {
       enable = true;
       theme = {
-        package = pkgs.arc-theme;
-        name = "Arc-Dark";
+        package = pkgs.adapta-gtk-theme;
+        name = "Adapta-Nokto-Eta";
       };
       iconTheme = {
         package = pkgs.paper-icon-theme;
