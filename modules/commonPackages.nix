@@ -78,7 +78,7 @@ pkgs: pkgsMaster:
   qutebrowser
 
   # Dev
-  jdk
+  jdk10
   cmake
   gnumake
   ctags
