@@ -3,12 +3,12 @@ pkgs:
 {
   compton = { enable = true; } // import ../configs/compton.nix;
 
-  taffybar.enable = true;
+  taffybar.enable = false;
   status-notifier-watcher.enable = true;
 
   network-manager-applet.enable = true;
   udiskie.enable = true;
-  pasystray.enable = true;
+  pasystray.enable = false;
 
   screen-locker = {
     enable = true;
@@ -29,7 +29,7 @@ pkgs:
   syncthing.enable = false;
 
   stalonetray = {
-    enable = false;
+    enable = true;
     config = import ../configs/stalonetray.nix;
   };
 
