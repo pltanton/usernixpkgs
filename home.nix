@@ -36,7 +36,7 @@ let
 
     xsession = {
       enable = true;
-      preferStatusNotifierItems = false;
+      preferStatusNotifierItems = true;
       pointerCursor = {
         package = pkgs.paper-icon-theme;
         name = "Paper";
