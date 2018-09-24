@@ -29,7 +29,7 @@ pkgs:
   syncthing.enable = false;
 
   stalonetray = {
-    enable = true;
+    enable = false;
     config = import ../configs/stalonetray.nix;
   };
 

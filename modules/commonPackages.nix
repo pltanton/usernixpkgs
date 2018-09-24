@@ -41,35 +41,36 @@ pkgs: pkgsMaster:
   # User apps #
   #############
   # CLI utils
-  killall
   ansible
   dnsutils
+  gopass
   htop
   inetutils
+  killall
   nfs-utils
   nodePackages.peerflix
   p7zip
   pass
-  gopass
   passff-host
   ranger
   tmux
   unzip
+  vault
   wget
 
   # GUI
-  vlc
   evince
   feh
-  polybar
   gnome3.eog
   google-play-music-desktop-player 
   gthumb
   kitty
   mpv
+  polybar
   rofi-pass
   system-config-printer
   tdesktop
+  vlc
   xsane
 
   # Web
@@ -84,6 +85,7 @@ pkgs: pkgsMaster:
   ctags
   llvmPackages.clang
   gdb
+  nixops
   (python3.withPackages (pp: with pp; [ jedi flake8 grpcio]))
 
 ]) ++ (with pkgsMaster; [
