@@ -8,7 +8,7 @@ pkgs:
 
   network-manager-applet.enable = true;
   udiskie.enable = true;
-  pasystray.enable = false;
+  pasystray.enable = true;
 
   screen-locker = {
     enable = true;
