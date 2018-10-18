@@ -22,7 +22,7 @@
     "class_g = 'slop'"
     "class_i = 'polybar'"
   ];
-  noDockBlur = true;
+  #noDockBlur = true;
 
   extraOptions = ''
     xinerama-shadow-crop = true;

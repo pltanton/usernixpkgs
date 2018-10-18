@@ -28,6 +28,8 @@ with import <nixpkgs> {};
       "tagbar"
       "ale"
       "kotlin"
+
+      "typescript-vim"
     ]; }
     { names = [ "vim-go" "deoplete-go" ]; ft_regex = "^go$"; }
     { names = [ "flake8-vim" "deoplete-jedi" ]; ft_regex = "^python$"; }
