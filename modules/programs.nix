@@ -2,7 +2,7 @@ pkgs:
 
 {
   autorandr = {
-    enable = true;
+    enable = false;
     hooks.postswitch = {
       reload-background = "systemctl --user restart random-background";
     };
@@ -19,7 +19,7 @@ pkgs:
     configure = import ../configs/vim/vim.nix;
   };
 
-  rofi = { enable = true; } // import ../configs/rofi.nix;
+  rofi = { enable = false; } // import ../configs/rofi.nix;
 
   zsh = {
     enable = true;
@@ -38,11 +38,12 @@ pkgs:
     };
   };
 
-  termite = { enable = true; } // (import ../configs/termite.nix);
+  termite = { enable = false; } // (import ../configs/termite.nix);
 
   firefox = {
     enable = true;
     enableIcedTea = true;
+    package = pkgs.firefox;
   };
 
   home-manager = {

@@ -11,24 +11,16 @@ pkgs: pkgsMaster:
   font-awesome_5
   kbdd
   libnotify
-  light
-  maim
-  networkmanagerapplet
-  pamixer
-  pamixer
-  pavucontrol
   pavucontrol
   shared_mime_info
-  siji
-  xbanish
   xclip
   xdotool
-  xfce.thunar
-  xfce.tumbler
   xkblayout-state
-  xorg.xbacklight
-  myxkbutil
 
+  gnome3.gnome-tweak-tool
+  adapta-gtk-theme
+  chrome-gnome-shell
+  paper-icon-theme
 
   #################
   # Look and feel #
@@ -66,17 +58,12 @@ pkgs: pkgsMaster:
   gthumb
   kitty
   mpv
-  polybar
-  rofi-pass
-  system-config-printer
+  slack
   tdesktop
   vlc
-  xsane
 
   # Web
   chromium
-  qt5.qtmultimedia
-  qutebrowser
 
   # Dev
   jdk10

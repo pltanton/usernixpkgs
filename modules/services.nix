@@ -1,17 +1,17 @@
 pkgs:
 
 {
-  compton = { enable = true; } // import ../configs/compton.nix;
+  compton = { enable = false; } // import ../configs/compton.nix;
 
-  taffybar.enable = true;
-  status-notifier-watcher.enable = true;
+  status-notifier-watcher.enable = false;
+  taffybar.enable = false;
 
-  network-manager-applet.enable = true;
-  udiskie.enable = true;
-  pasystray.enable = true;
+  network-manager-applet.enable = false;
+  udiskie.enable = false;
+  pasystray.enable = false;
 
   screen-locker = {
-    enable = true;
+    enable = false;
     lockCmd = "${pkgs.i3lock-pixeled}/bin/i3lock-pixeled";
     inactiveInterval = 15;
   };
@@ -22,7 +22,7 @@ pkgs:
   };
 
   dunst = {
-    enable = true;
+    enable = false;
     settings = import ../configs/dunst.nix;
   };
 
@@ -34,7 +34,7 @@ pkgs:
   };
 
   random-background = {
-    enable = true;
+    enable = false;
     imageDirectory = "%h/.config/nixpkgs/backgrounds";
   };
 }
