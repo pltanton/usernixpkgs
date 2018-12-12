@@ -13,7 +13,7 @@ pkgs:
   };
 
   zsh = {
-    enable = false;
+    enable = true;
     oh-my-zsh = {
       enable = true;
       theme = "robbyrussell";
@@ -25,6 +25,11 @@ pkgs:
       EDITOR = "nvim";
       NIX_BUILD_SHELL = "zsh";
     };
+
+    profileExtra = ''
+      . /Users/pltanton/.nix-profile/etc/profile.d/nix.sh
+      . /Users/pltanton/.nix-profile/etc/profile.d/hm-session-vars.sh
+    '';
   };
 
   home-manager = {

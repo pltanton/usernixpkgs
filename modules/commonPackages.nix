@@ -8,4 +8,7 @@ pkgs: pkgsMaster:
 
   # CLI Utils
   htop
+  gopass
+
+  # GUI Applications
 ])
