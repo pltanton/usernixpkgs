@@ -1,7 +1,7 @@
 colors:
 ''
 font_family Hack
-font_size 13
+font_size 20
 
 background ${colors.xresourcesMap.background}
 foreground ${colors.xresourcesMap.foreground}
