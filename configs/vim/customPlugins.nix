@@ -70,5 +70,15 @@ with import <nixpkgs> {};
       sha256 = "18p09nfh3a7ccjqf73rffyla09g4ikfsc1zmxn9g8hs7f5x8ljj6";
     };
   };
+
+  plantuml-syntax = pkgs.vimUtils.buildVimPlugin {
+    name = "plantuml-syntax";
+    src = pkgs.fetchFromGitHub {
+      owner = "aklt";
+      repo = "plantuml-syntax";
+      rev = "41eeca5a548c7d3bcc7b86758a1f10b7d96aa0b9";
+      sha256 = "1v11dj4vwk5hyx0zc8qkl0a5wh91zfmwhcq2ndl8zwp78h9yf5wr";
+    };
+  };
 }
 

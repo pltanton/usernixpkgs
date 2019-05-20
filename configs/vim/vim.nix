@@ -2,7 +2,7 @@ with import <nixpkgs> {};
 
 {
   customRC = builtins.readFile ./vimrc;
-  vam.knownPlugins = pkgs.vimPlugins // (import ./customPlugins.nix);
+  vam.knownPlugins = pkgs.vimPlugins // (import ./customPlugins.nix) // { "tlib" = vimPlugins.tlib_vim; };
   vam.pluginDictionaries = [
     { names = [
       "Tabular"
@@ -21,16 +21,17 @@ with import <nixpkgs> {};
       "oceanic-next"
       "vim-airline-themes"
 
-      "vim-notes"
       "vim-misc"
 
       "vim-easytags"
       "tagbar"
       "ale"
-      "kotlin"
 
-      "typescript-vim"
+      "tlib"
+      "plantuml-syntax"
     ]; }
+    { names = [ "typescript-vim" ]; ft_regex = "^ts$"; }
+    { names = [ "kotlin" ]; ft_regex = "^kts?$"; }
     { names = [ "vim-go" "deoplete-go" ]; ft_regex = "^go$"; }
     { names = [ "flake8-vim" "deoplete-jedi" ]; ft_regex = "^python$"; }
     { name = "vim-addon-nix"; file_regex = "^nix$"; }
