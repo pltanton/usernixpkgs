@@ -1,18 +1,24 @@
 { pkgs, ... }:
 
 let
-  masterTar = builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/master.tar.gz;
-  pkgsMaster = import masterTar {};
+  # masterTar = builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/master.tar.gz;
+  # pkgsMaster = import masterTar {};
   colors = import ./modules/colors.nix;
 
   config = {
     programs = import ./modules/programs.nix pkgs;
     services = import ./modules/services.nix pkgs;
 
+    fonts.fontconfig.enable = true;
 
     home = {
-      packages = import ./modules/commonPackages.nix pkgs pkgsMaster;
+      packages = import ./modules/commonPackages.nix pkgs;
       file = import ./modules/files.nix pkgs colors;
+
+      keyboard = {
+        layout = "us,ru";
+        variant = "dvorak,";
+      };
     };
 
     gtk = {
@@ -29,7 +35,7 @@ let
 
     qt = {
       enable = true;
-      useGtkTheme = true;
+      platformTheme = "gtk";
     };
 
     xresources = import ./modules/xresources.nix colors;
@@ -59,8 +65,6 @@ let
         autorandr -c &
         xbanish &
         clipit &
-
-        ${pkgs.myxkbutil}/bin/xkb-dvp-diktor
         '';
     };
 
@@ -70,5 +74,5 @@ let
   overridesPath = ./overrides.nix;
 in
   if builtins.pathExists overridesPath
-  then config // (import overridesPath config pkgs pkgsMaster)
+  then config // (import overridesPath config pkgs)
   else config

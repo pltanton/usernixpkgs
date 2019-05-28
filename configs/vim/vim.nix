@@ -2,11 +2,11 @@ with import <nixpkgs> {};
 
 {
   customRC = builtins.readFile ./vimrc;
-  vam.knownPlugins = pkgs.vimPlugins // (import ./customPlugins.nix);
+  vam.knownPlugins = pkgs.vimPlugins // (import ./customPlugins.nix) // { "tlib" = vimPlugins.tlib_vim; };
   vam.pluginDictionaries = [
     { names = [
       "Tabular"
-      "surround"
+      "vim-surround"
 
       "deoplete-nvim"
 
@@ -21,22 +21,31 @@ with import <nixpkgs> {};
       "oceanic-next"
       "vim-airline-themes"
 
-      "vim-notes"
       "vim-misc"
 
-      "vim-easytags"
+      #"vim-easytags"
+
+      "echodoc-vim"
+      "fzfWrapper"
+      "LanguageClient-neovim"
+
+      #"coc-nvim"
+      "vim-devicons"
+      #"ale"
+
       "tagbar"
-      "ale"
       "kotlin"
 
       "typescript-vim"
+
+      "tlib"
     ]; }
-    { names = [ "vim-go" "deoplete-go" ]; ft_regex = "^go$"; }
+    { names = [ ]; ft_regex = "^go$"; }
     { names = [ "flake8-vim" "deoplete-jedi" ]; ft_regex = "^python$"; }
     { name = "vim-addon-nix"; file_regex = "^nix$"; }
     { name = "vimtex"; ft_regex = "^tex$"; }
     { names = [ "ghcmod" "neco-ghc" "vimproc" ]; ft_regex = "^haskell$"; }
-    { names = [ "autocomplete-flow" "vim-javascript" "vim-jsx" ]; ft_regex = "^jsx?$"; }
+    #{ names = [ "autocomplete-flow" "vim-javascript" "vim-jsx" ]; ft_regex = "^jsx?$"; }
     { names = [ "deoplete-clang2" ]; ft_regex = "^cpp$"; }
   ];
 }

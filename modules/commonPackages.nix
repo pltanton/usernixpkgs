@@ -1,4 +1,4 @@
-pkgs: pkgsMaster:
+pkgs: 
 
 (with pkgs; [
   ###################
@@ -7,8 +7,6 @@ pkgs: pkgsMaster:
   arandr
   clipit
   ffmpegthumbnailer
-  font-awesome_4
-  font-awesome_5
   kbdd
   libnotify
   light
@@ -29,6 +27,10 @@ pkgs: pkgsMaster:
   xorg.xbacklight
   myxkbutil
 
+  # Fonts
+  font-awesome_5
+  emojione
+  nerdfonts
 
   #################
   # Look and feel #
@@ -41,6 +43,7 @@ pkgs: pkgsMaster:
   # User apps #
   #############
   # CLI utils
+  fzf
   ansible
   dnsutils
   gopass
@@ -48,7 +51,7 @@ pkgs: pkgsMaster:
   inetutils
   killall
   nfs-utils
-  nodePackages.peerflix
+  #nodePackages.peerflix
   p7zip
   pass
   passff-host
@@ -57,8 +60,11 @@ pkgs: pkgsMaster:
   unzip
   vault
   wget
+  tree
 
   # GUI
+  rapid-photo-downloader
+  vscode
   evince
   feh
   gnome3.eog
@@ -72,6 +78,8 @@ pkgs: pkgsMaster:
   tdesktop
   vlc
   xsane
+  slack
+  steam
 
   # Web
   chromium
@@ -79,16 +87,19 @@ pkgs: pkgsMaster:
   qutebrowser
 
   # Dev
-  jdk10
+  nodejs
+  gnome2.libgnome
+  openjdk11
+  arduino
+  esptool
   cmake
   gnumake
   ctags
   llvmPackages.clang
   gdb
   nixops
-  (python3.withPackages (pp: with pp; [ jedi flake8 grpcio]))
+  gotools
+  go
+  (python3.withPackages (pp: with pp; [pylint jedi flake8 autopep8 grpcio]))
 
-]) ++ (with pkgsMaster; [
-  haskellPackages.xmobar
 ])
-

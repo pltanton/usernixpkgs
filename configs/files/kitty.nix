@@ -1,6 +1,6 @@
 colors:
 ''
-font_family Hack
+font_family Hack Nerd Font
 font_size 13
 
 background ${colors.xresourcesMap.background}

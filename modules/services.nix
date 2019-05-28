@@ -37,5 +37,7 @@ pkgs:
     enable = true;
     imageDirectory = "%h/.config/nixpkgs/backgrounds";
   };
+
+  nextcloud-client.enable = true;
 }
 
