@@ -2,7 +2,7 @@ syntax on
 set shell=/bin/sh
 set encoding=utf-8
 set spelllang=en_us,ru_ru
-set showcmd                
+set showcmd
 set mouse=a
 set incsearch
 set nohlsearch
@@ -15,7 +15,7 @@ set hidden
 set colorcolumn=80
 set modeline
 set modelines=5
-set relativenumber
+set number relativenumber
 set splitbelow
 set splitright
 
@@ -44,10 +44,10 @@ nmap <leader>s<right>  :rightbelow vnew<cr>
 nmap <leader>s<up>     :leftabove  new<cr>
 nmap <leader>s<down>   :rightbelow new<cr>
 
-nnoremap <C-H> <C-W><C-H> 
-nnoremap <C-J> <C-W><C-J> 
-nnoremap <C-K> <C-W><C-K> 
-nnoremap <C-L> <C-W><C-L> 
+nnoremap <C-H> <C-W><C-H>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
 
 
 " Buffers
@@ -115,6 +115,8 @@ colorscheme OceanicNext
 " Deoplete
 "set completeopt+=noselect
 let g:deoplete#enable_at_startup = 1
+autocmd CompleteDone * silent! pclose!
+autocmd InsertLeave * silent! pclose!
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
@@ -123,7 +125,7 @@ let g:airline_theme = 'oceanicnext'
 
 " NERD Tree
 map <F10> :NERDTreeToggle<CR>
-let NERDTreeIgnore = Mapped(function("AsExtRegex"), [ 
+let NERDTreeIgnore = Mapped(function("AsExtRegex"), [
     \'aux', 'bcf', 'fdb_latexmk', 'fls', 'run\.xml', 'synctex\.gz', 'toc',
     \'bbl', 'blg'
 \])
@@ -141,7 +143,9 @@ nmap <F8> :TagbarToggle<CR>
 
 " LasguageClient
 let g:LanguageClient_serverCommands = {
-       \ 'go': ['gopls']
+       \ 'go': ['gopls'],
+       \ 'python': ['pyls'],
+       \ 'tex': ['texlab']
        \ }
 
 nnoremap <leader>lf :call LanguageClient#textDocument_formatting()<CR>
@@ -170,4 +174,9 @@ autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
 " Vimtex
 let g:tex_flavor = 'latex'
 let g:vimtex_enable = 1
+let g:vimtex_view_method = 'zathura'
+let g:vimtex_compiler_method = 'latexmk'
+
+" Float preview
+let g:float_preview#docked = 1
 

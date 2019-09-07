@@ -7,7 +7,7 @@ pkgs:
       reload-background = "systemctl --user restart random-background";
     };
   };
-  
+
   git = {
     enable = true;
     userName = "Anton Plotnikov";

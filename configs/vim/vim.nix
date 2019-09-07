@@ -9,6 +9,7 @@ with import <nixpkgs> {};
       "vim-surround"
 
       "deoplete-nvim"
+      #"float-preview"
 
       "The_NERD_tree"
       "ctrlp"
@@ -22,6 +23,7 @@ with import <nixpkgs> {};
       "vim-airline-themes"
 
       "vim-misc"
+      "vim-trailing-whitespace"
 
       #"vim-easytags"
 
@@ -29,9 +31,7 @@ with import <nixpkgs> {};
       "fzfWrapper"
       "LanguageClient-neovim"
 
-      #"coc-nvim"
       "vim-devicons"
-      #"ale"
 
       "tagbar"
       "kotlin"
@@ -40,8 +40,8 @@ with import <nixpkgs> {};
 
       "tlib"
     ]; }
-    { names = [ ]; ft_regex = "^go$"; }
-    { names = [ "flake8-vim" "deoplete-jedi" ]; ft_regex = "^python$"; }
+    { names = [ "vim-go" ]; ft_regex = "^go$"; }
+    { names = [ ]; ft_regex = "^python$"; }
     { name = "vim-addon-nix"; file_regex = "^nix$"; }
     { name = "vimtex"; ft_regex = "^tex$"; }
     { names = [ "ghcmod" "neco-ghc" "vimproc" ]; ft_regex = "^haskell$"; }

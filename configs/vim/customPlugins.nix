@@ -1,13 +1,13 @@
 with import <nixpkgs> {};
 
 {
-  vim-notes = pkgs.vimUtils.buildVimPlugin {
-    name = "vim-notes";
+  float-preview = pkgs.vimUtils.buildVimPlugin {
+    name = "float-preview";
     src = pkgs.fetchFromGitHub {
-      owner = "xolox";
-      repo = "vim-notes";
-      rev = "e465a0a987dbacdf7291688215b8545f8584d409";
-      sha256 = "1b7fbji17a3n9qbk5w6sfw0ddl06x0s2v3xbfhf0ydvhjnrhifp0";
+      owner = "ncm2";
+      repo = "float-preview.nvim";
+      rev = "c5431b6d9bd4a8002f1a3eec42e9458ef4453ff3";
+      sha256 = "0ylrp0pmg822m7zp7dhyhmb05zbiy4gbq40l4whs249v0v4s9vyd";
     };
   };
 

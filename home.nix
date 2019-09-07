@@ -1,18 +1,19 @@
 { pkgs, ... }:
 
 let
-  # masterTar = builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/master.tar.gz;
-  # pkgsMaster = import masterTar {};
+  #masterTar = builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/master.tar.gz;
+  #pkgsMaster = import masterTar {};
+  pkgsStable = import <nixos-stable> {};
   colors = import ./modules/colors.nix;
 
   config = {
     programs = import ./modules/programs.nix pkgs;
-    services = import ./modules/services.nix pkgs;
+    services = import ./modules/services.nix pkgs pkgsStable;
 
     fonts.fontconfig.enable = true;
 
     home = {
-      packages = import ./modules/commonPackages.nix pkgs;
+      packages = import ./modules/commonPackages.nix pkgs pkgsStable;
       file = import ./modules/files.nix pkgs colors;
 
       keyboard = {
@@ -51,20 +52,20 @@ let
       windowManager.xmonad = {
         enable = true;
         extraPackages = haskellPackages: with haskellPackages; [
-          taffybar
           xmonad-extras
           xmonad-contrib
+          taffybar
         ];
       };
-
-      profileExtra = ''
-        systemctl --user import-environment GDK_PIXBUF_MODULE_FILE
-      '';
+      importedVariables = [
+        "GDK_PIXBUF_MODULE_FILE"
+      ];
 
       initExtra = ''
-        autorandr -c &
-        xbanish &
-        clipit &
+        ${pkgs.autorandr}/bin/autorandr -c &
+        ${pkgs.xbanish}/bin/xbanish &
+        ${pkgs.clipit}/bin/clipit &
+        ${pkgs.keepassxc}/bin/keepassxc &
         '';
     };
 

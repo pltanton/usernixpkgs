@@ -1,9 +1,13 @@
-pkgs:
+pkgs: pkgsStable:
 
 {
   compton = { enable = true; } // import ../configs/compton.nix;
 
-  taffybar.enable = true;
+  taffybar = {
+    enable = true;
+    package = pkgsStable.taffybar;
+  };
+
   status-notifier-watcher.enable = true;
 
   network-manager-applet.enable = true;

@@ -1,4 +1,4 @@
-pkgs: 
+pkgs: pkgsStable:
 
 (with pkgs; [
   ###################
@@ -13,8 +13,6 @@ pkgs:
   maim
   networkmanagerapplet
   pamixer
-  pamixer
-  pavucontrol
   pavucontrol
   shared_mime_info
   siji
@@ -30,7 +28,7 @@ pkgs:
   # Fonts
   font-awesome_5
   emojione
-  nerdfonts
+  pkgsStable.nerdfonts
 
   #################
   # Look and feel #
@@ -47,6 +45,7 @@ pkgs:
   ansible
   dnsutils
   gopass
+  keepmenu
   htop
   inetutils
   killall
@@ -58,17 +57,18 @@ pkgs:
   ranger
   tmux
   unzip
-  vault
+  #vault
   wget
   tree
 
   # GUI
-  rapid-photo-downloader
-  vscode
+  keepassxc
+  my-rapid-photo-downloader
+  #vscode
   evince
   feh
   gnome3.eog
-  google-play-music-desktop-player 
+  google-play-music-desktop-player
   gthumb
   kitty
   mpv
@@ -83,8 +83,6 @@ pkgs:
 
   # Web
   chromium
-  qt5.qtmultimedia
-  qutebrowser
 
   # Dev
   nodejs
@@ -100,6 +98,13 @@ pkgs:
   nixops
   gotools
   go
-  (python3.withPackages (pp: with pp; [pylint jedi flake8 autopep8 grpcio]))
-
+  (python3.withPackages (pp: with pp; [
+    python-language-server
+    pylint
+    jedi
+    flake8
+    autopep8
+    grpcio
+    pygments
+  ]))
 ])
