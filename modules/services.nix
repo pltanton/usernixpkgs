@@ -13,10 +13,15 @@ pkgs: pkgsStable:
   network-manager-applet.enable = true;
   udiskie.enable = true;
   pasystray.enable = true;
+  blueman-applet.enable = true;
+
+  gnome-keyring = {
+    enable = true;
+  };
 
   screen-locker = {
     enable = true;
-    lockCmd = "${pkgs.i3lock-pixeled}/bin/i3lock-pixeled";
+    lockCmd = "${pkgs.lightlocker}/bin/light-locker-command -l";
     inactiveInterval = 15;
   };
 

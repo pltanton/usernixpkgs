@@ -13,7 +13,7 @@ let
     fonts.fontconfig.enable = true;
 
     home = {
-      packages = import ./modules/commonPackages.nix pkgs pkgsStable;
+      packages = []; # import ./modules/commonPackages.nix pkgs pkgsStable;
       file = import ./modules/files.nix pkgs colors;
 
       keyboard = {
@@ -65,7 +65,7 @@ let
         ${pkgs.autorandr}/bin/autorandr -c &
         ${pkgs.xbanish}/bin/xbanish &
         ${pkgs.clipit}/bin/clipit &
-        ${pkgs.keepassxc}/bin/keepassxc &
+        ${pkgs.lightlocker}/bin/light-locker &
         '';
     };
 

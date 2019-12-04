@@ -8,6 +8,7 @@ pkgs:
   database = {
     database_1 = "~/nextcloud/Secrets.kdbx";
     autotype_default = "{PASSWORD}";
+    type_library = "xdotool";
   };
 }
 #[dmenu]

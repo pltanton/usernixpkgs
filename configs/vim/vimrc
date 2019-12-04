@@ -87,8 +87,8 @@ function! RestoreLayout()
     endif
 endfunction
 
-autocmd InsertLeave * call SetUsLayout()
-autocmd InsertEnter * call RestoreLayout()
+" autocmd InsertLeave * call SetUsLayout()
+" autocmd InsertEnter * call RestoreLayout()
 
 " Save files which require root permission
 cmap w!! %!sudo tee > /dev/null %

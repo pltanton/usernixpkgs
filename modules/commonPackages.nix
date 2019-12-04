@@ -25,10 +25,12 @@ pkgs: pkgsStable:
   xorg.xbacklight
   myxkbutil
 
+  #pkgsStable.qmk_firmware
+
   # Fonts
   font-awesome_5
   emojione
-  pkgsStable.nerdfonts
+  #nerdfonts
 
   #################
   # Look and feel #
@@ -44,16 +46,20 @@ pkgs: pkgsStable:
   fzf
   ansible
   dnsutils
-  gopass
-  keepmenu
+  jq
+  #gopass
+  bitwarden-cli
   htop
   inetutils
   killall
   nfs-utils
   #nodePackages.peerflix
   p7zip
-  pass
+
+  #pass
+  (pass.withExtensions (ex: with ex; [ pass-otp ]))
   passff-host
+
   ranger
   tmux
   unzip
@@ -63,8 +69,9 @@ pkgs: pkgsStable:
 
   # GUI
   keepassxc
-  my-rapid-photo-downloader
-  #vscode
+  (lowPrio kdenlive)
+  #my-rapid-photo-downloader
+  rapid-photo-downloader
   evince
   feh
   gnome3.eog
@@ -79,15 +86,17 @@ pkgs: pkgsStable:
   vlc
   xsane
   slack
-  steam
+  #steam
 
   # Web
   chromium
+  qutebrowser
 
   # Dev
   nodejs
   gnome2.libgnome
-  openjdk11
+  adoptopenjdk-bin
+  (lowPrio adoptopenjdk-hotspot-bin-8)
   arduino
   esptool
   cmake
