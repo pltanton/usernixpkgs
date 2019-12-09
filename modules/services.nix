@@ -1,6 +1,8 @@
-pkgs: pkgsStable:
+pkgs:
 
-{
+let
+  pkgsStable = import <nixos-stable> {};
+in {
   compton = { enable = true; } // import ../configs/compton.nix;
 
   taffybar = {

@@ -1,6 +1,7 @@
 { pkgs }:
 
 {
+  allowUnsupportedSystem = true;
   allowBroken = true;
   allowUnfree = true;
   android_sdk.accept_license = true;

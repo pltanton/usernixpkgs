@@ -1,6 +1,8 @@
-pkgs: pkgsStable:
+pkgs:
 
-(with pkgs; [
+let
+  pkgsStable = import <nixos-stable> {};
+in (with pkgs; [
   ###################
   # Packages for DE #
   ###################
