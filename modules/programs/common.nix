@@ -1,37 +1,19 @@
 pkgs:
 
 {
-  neovim = {
-    extraConfig = builtins.readFile ../../configs/vim/vimrc;
-    enable = true;
-    #configure = import ../configs/vim/vim.nix;
-    plugins = with (pkgs.vimPlugins // (import ../../configs/vim/customPlugins.nix)); [
-      Tabular
-      vim-surround
-      deoplete-nvim
-      The_NERD_tree
-      ctrlp
-      fugitive
-      vimtex
-      airline
-      oceanic-next
-      vim-airline-themes
-      vim-misc
-      vim-trailing-whitespace
-      echodoc-vim
-      fzfWrapper
-      coc-nvim
-      vim-devicons
-      tagbar
-      typescript-vim
-      kotlin
+  neovim = import ../../configs/vim/vim.nix pkgs;
 
-      #plantuml-syntax
-      coc-go
-      vim-addon-nix
-      vimtex
-      ghcmod neco-ghc vimproc
-    ];
+  taskwarrior = {
+    enable = true;
+    config = {
+      taskd = {
+        server = "hz1.kaliwe.ru:53589";
+        credentials = "Public/Anton/04a69057-65fa-4f3f-9a37-1c256d7b3bb2";
+        certificate = "~/.task_kaliwe/server.cert";
+        key = "~/.task_kaliwe/ca.key";
+        ca = "~/.task_kaliwe/ca.crt";
+      };
+    };
   };
 
   home-manager = {
