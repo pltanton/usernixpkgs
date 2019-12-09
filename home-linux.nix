@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+pkgs:
 
 let
   colors = import ./modules/colors.nix;

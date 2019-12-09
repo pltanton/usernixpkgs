@@ -14,7 +14,7 @@ pkgs:
     userEmail = "plotnikovanton@gmail.com";
   };
 
-  rofi = { enable = true; } // import ../configs/rofi.nix;
+  rofi = { enable = true; } // import ../../configs/rofi.nix;
 
   zsh = {
     enable = true;
