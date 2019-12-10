@@ -77,18 +77,15 @@ in (with pkgs; [
   evince
   feh
   gnome3.eog
-  google-play-music-desktop-player
   gthumb
   kitty
   mpv
-  polybar
-  rofi-pass
-  system-config-printer
   tdesktop
   vlc
   xsane
   slack
   #steam
+  bitwarden
 
   # Web
   chromium
@@ -96,18 +93,8 @@ in (with pkgs; [
 
   # Dev
   nodejs
-  gnome2.libgnome
   adoptopenjdk-bin
   (lowPrio adoptopenjdk-hotspot-bin-8)
-  arduino
-  esptool
-  cmake
-  gnumake
-  ctags
-  llvmPackages.clang
-  gdb
-  nixops
-  gotools
   go
   (python3.withPackages (pp: with pp; [
     python-language-server
