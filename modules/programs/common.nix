@@ -8,10 +8,10 @@ pkgs:
     config = {
       taskd = {
         server = "hz1.kaliwe.ru:53589";
-        credentials = "Public/Anton/04a69057-65fa-4f3f-9a37-1c256d7b3bb2";
-        certificate = "~/.task_kaliwe/server.cert";
-        key = "~/.task_kaliwe/ca.key";
-        ca = "~/.task_kaliwe/ca.crt";
+        credentials = "home/anton/4beddf06-a575-485f-beac-0bc6357261dc";
+        certificate = "~/.task_kaliwe/anton/public.cert";
+        key = "~/.task_kaliwe/anton/private.key";
+        ca = "~/.task_kaliwe/ca.cert";
       };
     };
   };

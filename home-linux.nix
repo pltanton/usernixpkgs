@@ -1,9 +1,9 @@
-pkgs:
+pkgs: oldAttrs:
 
 let
   colors = import ./modules/colors.nix;
 in {
-  home = {
+  home = oldAttrs.home // {
     keyboard = {
       layout = "us,ru";
       variant = "dvorak,";
