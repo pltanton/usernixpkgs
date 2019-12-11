@@ -180,3 +180,8 @@ let g:vimtex_compiler_method = 'latexmk'
 " Float preview
 let g:float_preview#docked = 1
 
+" Vimwiki
+let g:vimwiki_list = [{'path': '~/.wiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+
+

@@ -14,21 +14,27 @@ pkgs:
     vimtex
     airline
     oceanic-next
+
     vim-airline-themes
-    vim-misc
     vim-trailing-whitespace
-    echodoc-vim
+
     fzfWrapper
-    coc-nvim
     vim-devicons
     tagbar
     typescript-vim
+
     kotlin
 
     #plantuml-syntax
+
+    coc-nvim
     coc-go
+    echodoc-vim
+
     vim-addon-nix
     vimtex
     ghcmod neco-ghc vimproc
+
+    vimwiki
   ];
 }
