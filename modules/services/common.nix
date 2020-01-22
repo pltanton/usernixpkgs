@@ -1,0 +1,7 @@
+pkgs:
+
+{
+  syncthing = {
+    enable = true;
+  };
+}

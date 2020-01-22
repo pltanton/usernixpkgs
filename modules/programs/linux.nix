@@ -1,6 +1,10 @@
 pkgs:
 
 {
+  emacs = {
+    enable = true;
+  };
+
   autorandr = {
     enable = true;
     hooks.postswitch = {

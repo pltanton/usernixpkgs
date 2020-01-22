@@ -5,7 +5,7 @@ let
   homeEnv = import ./env.nix pkgs;
   config = {
     programs = import ./modules/programs/common.nix pkgs // homeEnv.programs;
-    services = homeEnv.services;
+    services = import ./modules/services/common.nix pkgs // homeEnv.services;
 
     fonts.fontconfig.enable = true;
 

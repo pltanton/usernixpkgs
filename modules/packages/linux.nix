@@ -70,6 +70,7 @@ in (with pkgs; [
   tree
 
   # GUI
+  transmission-remote-gtk
   keepassxc
   (lowPrio kdenlive)
   #my-rapid-photo-downloader
@@ -78,6 +79,7 @@ in (with pkgs; [
   feh
   gnome3.eog
   gthumb
+  gimp
   kitty
   mpv
   tdesktop
@@ -94,6 +96,7 @@ in (with pkgs; [
   # Dev
   nodejs
   adoptopenjdk-bin
+  jetbrains.idea-community
   (lowPrio adoptopenjdk-hotspot-bin-8)
   go
   (python3.withPackages (pp: with pp; [
@@ -104,5 +107,6 @@ in (with pkgs; [
     autopep8
     grpcio
     pygments
+    hvac
   ]))
 ])

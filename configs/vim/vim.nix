@@ -32,9 +32,9 @@ pkgs:
     echodoc-vim
 
     vim-addon-nix
-    vimtex
     ghcmod neco-ghc vimproc
 
     vimwiki
+    vim-orgmode
   ];
 }

@@ -3,7 +3,7 @@ pkgs:
 let
   pkgsStable = import <nixos-stable> {};
 in {
-  compton = { enable = true; } // import ../configs/compton.nix;
+  compton = { enable = true; } // import ../../configs/compton.nix;
 
   taffybar = {
     enable = true;
@@ -34,14 +34,13 @@ in {
 
   dunst = {
     enable = true;
-    settings = import ../configs/dunst.nix;
+    settings = import ../../configs/dunst.nix;
   };
 
-  syncthing.enable = false;
 
   stalonetray = {
     enable = false;
-    config = import ../configs/stalonetray.nix;
+    config = import ../../configs/stalonetray.nix;
   };
 
   random-background = {
