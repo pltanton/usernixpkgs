@@ -1,7 +1,4 @@
 pkgs:
 
 {
-  syncthing = {
-    enable = true;
-  };
 }

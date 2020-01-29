@@ -3,6 +3,15 @@ pkgs:
 {
   neovim = import ../../configs/vim/vim.nix pkgs;
 
+  emacs = {
+    enable = true;
+    extraPackages = epkgs: with epkgs; [
+      evil
+      evil-org
+      evil-leader
+    ];
+  };
+
   taskwarrior = {
     enable = true;
     config = {
@@ -14,13 +23,6 @@ pkgs:
         ca = "~/.task_kaliwe/ca.cert";
       };
     };
-  };
-
-  home-manager = {
-    enable = true;
-    path = https://github.com/rycee/home-manager/archive/master.tar.gz;
-    #path = https://github.com/rycee/home-manager/archive/release-19.03.tar.gz;
-    #path = "/home/anton/workdir/home-manager";
   };
 
   zsh = {

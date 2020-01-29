@@ -3,6 +3,10 @@ pkgs:
 let
   pkgsStable = import <nixos-stable> {};
 in {
+  syncthing = {
+    enable = true;
+  };
+
   compton = { enable = true; } // import ../../configs/compton.nix;
 
   taffybar = {
