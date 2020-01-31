@@ -42,6 +42,7 @@ color:
     :base0D "${color.base13}"
     :base0E "${color.base14}"
     :base0F "${color.base15}")
+  "All colors for Base16 nix are defined here.")
 
 ;; Define the theme
 (deftheme base16-nix)
