@@ -9,6 +9,8 @@ pkgs:
       evil
       evil-org
       evil-leader
+      ivy
+      base16-theme
     ];
   };
 

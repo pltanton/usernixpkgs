@@ -1,6 +1,55 @@
+color:
+''
+
+** Evil mode configuration
+
 #+BEGIN_SRC emacs-lisp
-    (require 'evil-leader)
-    (global-evil-leader-mode)
-    (require 'evil)
-    (evil-mode 1)
+(require 'evil-leader)
+(global-evil-leader-mode)
+
+(require 'evil)
+(evil-mode 1)
 #+END_SRC
+
+** User experience plugins
+
+#+BEGIN_SRC emacs-lisp
+(require 'ivy)
+(ivy-mode 1)
+(setq ivy-use-virtual-buffers t)
+(setq enable-recursive-minibuffers t)
+#+END_SRC
+
+** Defenition of base16 nix-generated theme
+
+#+BEGIN_SRC emacs-lisp
+(require 'base16-theme)
+
+(defvar base16-nix-colors
+  '(:base00 "${color.base0}"
+    :base01 "${color.base1}"
+    :base02 "${color.base2}"
+    :base03 "${color.base3}"
+    :base04 "${color.base4}"
+    :base05 "${color.base5}"
+    :base06 "${color.base6}"
+    :base07 "${color.base7}"
+    :base08 "${color.base8}"
+    :base09 "${color.base9}"
+    :base0A "${color.base10}"
+    :base0B "${color.base11}"
+    :base0C "${color.base12}"
+    :base0D "${color.base13}"
+    :base0E "${color.base14}"
+    :base0F "${color.base15}")
+
+;; Define the theme
+(deftheme base16-nix)
+(base16-theme-define 'base16-nix base16-nix-colors)
+(provide-theme 'base16-nix)
+(provide 'base16-nix-theme)
+
+(load-theme 'base16-nix t)
+#+END_SRC
+
+''
