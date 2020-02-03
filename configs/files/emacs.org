@@ -1,5 +1,14 @@
 color:
 ''
+* Configuration
+** Basic EMACS configuration
+
+#+BEGIN_SRC emacs-lisp
+(menu-bar-mode -1)
+(toggle-scroll-bar -1)
+(tool-bar-mode -1)
+;;(set-frame-font "Hack-16")
+#+END_SRC
 
 ** Evil mode configuration
 
@@ -18,7 +27,17 @@ color:
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)
 (setq enable-recursive-minibuffers t)
+
+(require 'ranger)
+(ranger-override-dired-mode t)
+
+(require 'all-the-icons)
+(require 'neotree)
+(global-set-key [f10] 'neotree-toggle)
+(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+
 #+END_SRC
+
 
 ** Defenition of base16 nix-generated theme
 
@@ -49,8 +68,8 @@ color:
 (base16-theme-define 'base16-nix base16-nix-colors)
 (provide-theme 'base16-nix)
 (provide 'base16-nix-theme)
-
-(load-theme 'base16-nix t)
 #+END_SRC
 
 ''
+
+

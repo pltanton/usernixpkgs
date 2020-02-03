@@ -11,6 +11,9 @@ pkgs:
       evil-leader
       ivy
       base16-theme
+      ranger
+      neotree
+      all-the-icons
     ];
   };
 
