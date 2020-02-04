@@ -129,4 +129,5 @@ color:
    (provide-theme 'base16-nix)
    (provide 'base16-nix-theme)
    #+END_SRC
+
 ''
