@@ -2,6 +2,7 @@ pkgs: oldAttrs:
 
 let
   colors = import ./modules/colors.nix;
+  pkgsStable = import <nixos-stable> {};
 in {
   home = oldAttrs.home // {
     keyboard = {
@@ -39,6 +40,7 @@ in {
     };
     windowManager.xmonad = {
       enable = true;
+      haskellPackages = pkgsStable.haskellPackages;
       extraPackages = haskellPackages: with haskellPackages; [
         xmonad-extras
         xmonad-contrib

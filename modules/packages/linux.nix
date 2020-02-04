@@ -88,6 +88,8 @@ in (with pkgs; [
   slack
   #steam
   bitwarden
+  sidequest
+  scrcpy
 
   # Web
   chromium

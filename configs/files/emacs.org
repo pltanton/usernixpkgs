@@ -1,75 +1,132 @@
 color:
 ''
-* Configuration
-** Basic EMACS configuration
+* Basic EMACS configuration
 
-#+BEGIN_SRC emacs-lisp
-(menu-bar-mode -1)
-(toggle-scroll-bar -1)
-(tool-bar-mode -1)
-;;(set-frame-font "Hack-16")
-#+END_SRC
+** Disable default visual GUI shit.
+   #+BEGIN_SRC emacs-lisp
+   (menu-bar-mode -1)
+   (toggle-scroll-bar -1)
+   (tool-bar-mode -1)
+   (blink-cursor-mode -1)
+   #+END_SRC
+
+   #+BEGIN_SRC emacs-lisp
+   (global-hl-line-mode +1)
+   (line-number-mode +1)
+   (global-display-line-numbers-mode 1)
+   (column-number-mode t)
+   (size-indication-mode t)
+
+   (setq inhibit-startup-screen t)
+
+   (set-frame-font "Hack 13" nil t)
+
+   (setq user-full-name "Anton Plotnikov"
+         user-mail-address "plotnikovanton@gmail.com")
+   (setq gc-cons-threshold 50000000)
+   (setq large-file-warning-threshold 100000000)
+
+   (setq-default tab-width 4
+                 indent-tabs-mode nil)
+   (global-set-key (kbd "C-x k") 'kill-this-buffer)
+   (add-hook 'before-save-hook 'whitespace-cleanup)
+   (require 'diminish)
+   #+END_SRC
+
+** Enable fancy modeline
+   #+BEGIN_SRC emacs-lisp
+   ;;(require 'smart-mode-line-powerline-theme)
+
+   ;;(require 'smart-mode-line)
+   ;;(setq sml/theme 'powerline)
+   ;;(add-hook 'after-init-hook 'sml/setup)
+   #+END_SRC
+
+** Move annoying backup files to temporary directory.
+   #+BEGIN_SRC emacs-lisp
+   (setq backup-directory-alist
+         `((".*" . ,temporary-file-directory)))
+   (setq auto-save-file-name-transforms
+         `((".*" ,temporary-file-directory t)))
+   #+END_SRC
+
+** Reload file automatically if it changed outside
+   #+BEGIN_SRC emacs-lisp
+   (global-auto-revert-mode t)
+   #+END_SRC
+
 
 ** Evil mode configuration
+   #+BEGIN_SRC emacs-lisp
+   (require 'evil-leader)
+   (global-evil-leader-mode)
 
-#+BEGIN_SRC emacs-lisp
-(require 'evil-leader)
-(global-evil-leader-mode)
+   (require 'evil)
+   (evil-mode 1)
+   #+END_SRC
+* User experience plugins
 
-(require 'evil)
-(evil-mode 1)
-#+END_SRC
+** Enable ivy for fuzzy search
+   #+BEGIN_SRC emacs-lisp
+   (require 'ivy)
+   (ivy-mode 1)
+   (setq ivy-use-virtual-buffers t)
+   (setq enable-recursive-minibuffers t)
 
-** User experience plugins
+   (require 'ranger)
+   (ranger-override-dired-mode t)
+   #+END_SRC
 
-#+BEGIN_SRC emacs-lisp
-(require 'ivy)
-(ivy-mode 1)
-(setq ivy-use-virtual-buffers t)
-(setq enable-recursive-minibuffers t)
+** Neotree
 
-(require 'ranger)
-(ranger-override-dired-mode t)
+*** Enable neotree with icons
+    #+BEGIN_SRC emacs-lisp
+    (require 'all-the-icons)
+    (require 'neotree)
+    (global-set-key [f10] 'neotree-toggle)
+    (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+    #+END_SRC
 
-(require 'all-the-icons)
-(require 'neotree)
-(global-set-key [f10] 'neotree-toggle)
-(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-
-#+END_SRC
-
+*** Support of evil mode
+    #+BEGIN_SRC emacs-lisp
+    (evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
+    (evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-quick-look)
+    (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
+    (evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
+    (evil-define-key 'normal neotree-mode-map (kbd "g") 'neotree-refresh)
+    (evil-define-key 'normal neotree-mode-map (kbd "n") 'neotree-next-line)
+    (evil-define-key 'normal neotree-mode-map (kbd "p") 'neotree-previous-line)
+    (evil-define-key 'normal neotree-mode-map (kbd "A") 'neotree-stretch-toggle)
+    (evil-define-key 'normal neotree-mode-map (kbd "H") 'neotree-hidden-file-toggle)
+    #+END_SRC
 
 ** Defenition of base16 nix-generated theme
+   #+BEGIN_SRC emacs-lisp
+   (require 'base16-theme)
 
-#+BEGIN_SRC emacs-lisp
-(require 'base16-theme)
+   (defvar base16-nix-colors
+     '(:base00 "${color.base0}"
+       :base01 "${color.base1}"
+       :base02 "${color.base2}"
+       :base03 "${color.base3}"
+       :base04 "${color.base4}"
+       :base05 "${color.base5}"
+       :base06 "${color.base6}"
+       :base07 "${color.base7}"
+       :base08 "${color.base8}"
+       :base09 "${color.base9}"
+       :base0A "${color.base10}"
+       :base0B "${color.base11}"
+       :base0C "${color.base12}"
+       :base0D "${color.base13}"
+       :base0E "${color.base14}"
+       :base0F "${color.base15}")
+     "All colors for Base16 nix are defined here.")
 
-(defvar base16-nix-colors
-  '(:base00 "${color.base0}"
-    :base01 "${color.base1}"
-    :base02 "${color.base2}"
-    :base03 "${color.base3}"
-    :base04 "${color.base4}"
-    :base05 "${color.base5}"
-    :base06 "${color.base6}"
-    :base07 "${color.base7}"
-    :base08 "${color.base8}"
-    :base09 "${color.base9}"
-    :base0A "${color.base10}"
-    :base0B "${color.base11}"
-    :base0C "${color.base12}"
-    :base0D "${color.base13}"
-    :base0E "${color.base14}"
-    :base0F "${color.base15}")
-  "All colors for Base16 nix are defined here.")
-
-;; Define the theme
-(deftheme base16-nix)
-(base16-theme-define 'base16-nix base16-nix-colors)
-(provide-theme 'base16-nix)
-(provide 'base16-nix-theme)
-#+END_SRC
-
+   ;; Define the theme
+   (deftheme base16-nix)
+   (base16-theme-define 'base16-nix base16-nix-colors)
+   (provide-theme 'base16-nix)
+   (provide 'base16-nix-theme)
+   #+END_SRC
 ''
-
-

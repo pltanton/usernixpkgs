@@ -14,6 +14,9 @@ pkgs:
       ranger
       neotree
       all-the-icons
+      smart-mode-line-powerline-theme
+      smart-mode-line
+      diminish
     ];
   };
 

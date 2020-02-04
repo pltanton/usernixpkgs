@@ -13,6 +13,9 @@ let
       packages = import ./modules/packages/common.nix pkgs ++ homeEnv.packages;
       file = import ./modules/files/common.nix pkgs colors // homeEnv.files colors;
     };
-    nixpkgs.config.allowUnfree = true;
+    nixpkgs.config = {
+      allowUnfree = true;
+      allowBroken = true;
+    };
   };
 in config // homeEnv.extraHome config
