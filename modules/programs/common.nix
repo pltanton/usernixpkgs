@@ -9,10 +9,16 @@ pkgs:
       evil
       evil-org
       evil-leader
-      ivy
+
+      counsel
+      ivy-hydra
+      flx
       base16-theme
       ranger
-      neotree
+      treemacs
+      treemacs-evil
+      org-bullets
+
       all-the-icons
       smart-mode-line-powerline-theme
       smart-mode-line
@@ -53,4 +59,3 @@ pkgs:
   };
 
 }
-

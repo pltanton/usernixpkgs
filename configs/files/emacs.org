@@ -10,6 +10,7 @@ color:
    (blink-cursor-mode -1)
    #+END_SRC
 
+** Basic EMACS conifg
    #+BEGIN_SRC emacs-lisp
    (global-hl-line-mode +1)
    (line-number-mode +1)
@@ -19,7 +20,13 @@ color:
 
    (setq inhibit-startup-screen t)
 
-   (set-frame-font "Hack 13" nil t)
+   (set-frame-font "Hack 16" nil t)
+   (custom-theme-set-faces
+   'user
+   '(variable-pitch ((t (:family "Charis SIL"))))
+   '(fixed-pitch ((t ( :family "Hack")))))
+   (setq-default line-spacing 0)
+
 
    (setq user-full-name "Anton Plotnikov"
          user-mail-address "plotnikovanton@gmail.com")
@@ -33,14 +40,34 @@ color:
    (require 'diminish)
    #+END_SRC
 
-** Enable fancy modeline
-   #+BEGIN_SRC emacs-lisp
-   ;;(require 'smart-mode-line-powerline-theme)
+** Org mode
 
-   ;;(require 'smart-mode-line)
-   ;;(setq sml/theme 'powerline)
-   ;;(add-hook 'after-init-hook 'sml/setup)
+   #+BEGIN_SRC emacs-lisp
+   (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+   (define-key global-map "\C-cl" 'org-store-link)
+   (define-key global-map "\C-ca" 'org-agenda)
+   (setq org-log-done t)
+
    #+END_SRC
+
+*** Beatify
+    #+BEGIN_SRC emacs-lisp
+    (require 'org-bullets)
+    (add-hook 'org-mode-hook 'org-bullets-mode)
+
+    (setq org-hide-emphasis-markers t)
+    (add-hook 'org-mode-hook
+               '(lambda ()
+                   (variable-pitch-mode 1)
+                   (mapc
+                    (lambda (face) ;; Rescale and inherit the properties from the fixed-pitch font.
+                      (set-face-attribute face nil :inherit 'fixed-pitch))
+                    (list 'org-code 'org-block 'org-table 'org-property-value 'org-formula
+                          'org-tag 'org-verbatim 'org-date 'company-tooltip
+                          'org-special-keyword 'org-block-begin-line
+                          'org-block-end-line 'org-meta-line
+                          'org-document-info-keyword))))
+    #+END_SRC
 
 ** Move annoying backup files to temporary directory.
    #+BEGIN_SRC emacs-lisp
@@ -55,7 +82,6 @@ color:
    (global-auto-revert-mode t)
    #+END_SRC
 
-
 ** Evil mode configuration
    #+BEGIN_SRC emacs-lisp
    (require 'evil-leader)
@@ -68,37 +94,45 @@ color:
 
 ** Enable ivy for fuzzy search
    #+BEGIN_SRC emacs-lisp
-   (require 'ivy)
+   (require 'counsel)
+   (require 'ivy-hydra)
    (ivy-mode 1)
    (setq ivy-use-virtual-buffers t)
-   (setq enable-recursive-minibuffers t)
+   (setq ivy-count-format "(%d/%d) ")
+   (setq ivy-height 20)
+
+   ; ivy fuzzy
+   (require 'flx)
+   (setq ivy-re-builders-alist
+     '((t . ivy--regex-fuzzy)))
+   (setq ivy-initial-inputs-alist nil)
 
    (require 'ranger)
    (ranger-override-dired-mode t)
    #+END_SRC
 
-** Neotree
+** Treemacs
+   #+BEGIN_SRC emacs-lisp
+   (require 'treemacs)
+   (require 'treemacs-evil)
+   (global-set-key [f10] 'treemacs-select-window)
+   #+END_SRC
 
-*** Enable neotree with icons
-    #+BEGIN_SRC emacs-lisp
-    (require 'all-the-icons)
-    (require 'neotree)
-    (global-set-key [f10] 'neotree-toggle)
-    (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-    #+END_SRC
+** Keys
+   #+BEGIN_SRC emacs-lisp
+   (evil-leader/set-leader "SPC")
+   (evil-leader/set-key
+    "d" 'find-file
+    "D" 'open-ranger
+    "j" 'counsel-projectile
+    "b" 'ivy-switch-buffer
+    "h" 'helm-org-in-buffer-headings
+    "r" 'counsel-M-x
+    "e" 'eval-expression
+    "t" 'org-time-stamp
+    "c" 'insert-char)
+   #+END_SRC
 
-*** Support of evil mode
-    #+BEGIN_SRC emacs-lisp
-    (evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
-    (evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-quick-look)
-    (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
-    (evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
-    (evil-define-key 'normal neotree-mode-map (kbd "g") 'neotree-refresh)
-    (evil-define-key 'normal neotree-mode-map (kbd "n") 'neotree-next-line)
-    (evil-define-key 'normal neotree-mode-map (kbd "p") 'neotree-previous-line)
-    (evil-define-key 'normal neotree-mode-map (kbd "A") 'neotree-stretch-toggle)
-    (evil-define-key 'normal neotree-mode-map (kbd "H") 'neotree-hidden-file-toggle)
-    #+END_SRC
 
 ** Defenition of base16 nix-generated theme
    #+BEGIN_SRC emacs-lisp
