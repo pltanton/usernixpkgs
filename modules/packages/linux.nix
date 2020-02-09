@@ -90,6 +90,8 @@ in (with pkgs; [
   bitwarden
   sidequest
   scrcpy
+  darktable
+  caffeine-ng
 
   # Web
   chromium

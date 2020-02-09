@@ -1,5 +1,6 @@
 color:
 ''
+
 * Basic EMACS configuration
 
 ** Disable default visual GUI shit.
@@ -9,6 +10,7 @@ color:
    (tool-bar-mode -1)
    (blink-cursor-mode -1)
    #+END_SRC
+
 
 ** Basic EMACS conifg
    #+BEGIN_SRC emacs-lisp
@@ -20,28 +22,21 @@ color:
 
    (setq inhibit-startup-screen t)
 
-   (set-frame-font "Hack 16" nil t)
-   (custom-theme-set-faces
-   'user
-   '(variable-pitch ((t (:family "Charis SIL"))))
-   '(fixed-pitch ((t ( :family "Hack")))))
+   (set-frame-font "Hack 13" nil t)
    (setq-default line-spacing 0)
 
 
    (setq user-full-name "Anton Plotnikov"
-         user-mail-address "plotnikovanton@gmail.com")
+	 user-mail-address "plotnikovanton@gmail.com")
    (setq gc-cons-threshold 50000000)
    (setq large-file-warning-threshold 100000000)
 
-   (setq-default tab-width 4
-                 indent-tabs-mode nil)
-   (global-set-key (kbd "C-x k") 'kill-this-buffer)
    (add-hook 'before-save-hook 'whitespace-cleanup)
    (require 'diminish)
    #+END_SRC
 
-** Org mode
 
+** Org mode
    #+BEGIN_SRC emacs-lisp
    (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
    (define-key global-map "\C-cl" 'org-store-link)
@@ -55,32 +50,23 @@ color:
     (require 'org-bullets)
     (add-hook 'org-mode-hook 'org-bullets-mode)
 
-    (setq org-hide-emphasis-markers t)
-    (add-hook 'org-mode-hook
-               '(lambda ()
-                   (variable-pitch-mode 1)
-                   (mapc
-                    (lambda (face) ;; Rescale and inherit the properties from the fixed-pitch font.
-                      (set-face-attribute face nil :inherit 'fixed-pitch))
-                    (list 'org-code 'org-block 'org-table 'org-property-value 'org-formula
-                          'org-tag 'org-verbatim 'org-date 'company-tooltip
-                          'org-special-keyword 'org-block-begin-line
-                          'org-block-end-line 'org-meta-line
-                          'org-document-info-keyword))))
     #+END_SRC
+
 
 ** Move annoying backup files to temporary directory.
    #+BEGIN_SRC emacs-lisp
    (setq backup-directory-alist
-         `((".*" . ,temporary-file-directory)))
+	 `((".*" . ,temporary-file-directory)))
    (setq auto-save-file-name-transforms
-         `((".*" ,temporary-file-directory t)))
+	 `((".*" ,temporary-file-directory t)))
    #+END_SRC
+
 
 ** Reload file automatically if it changed outside
    #+BEGIN_SRC emacs-lisp
    (global-auto-revert-mode t)
    #+END_SRC
+
 
 ** Evil mode configuration
    #+BEGIN_SRC emacs-lisp
@@ -90,7 +76,7 @@ color:
    (require 'evil)
    (evil-mode 1)
    #+END_SRC
-* User experience plugins
+
 
 ** Enable ivy for fuzzy search
    #+BEGIN_SRC emacs-lisp
@@ -111,26 +97,112 @@ color:
    (ranger-override-dired-mode t)
    #+END_SRC
 
+
 ** Treemacs
    #+BEGIN_SRC emacs-lisp
    (require 'treemacs)
    (require 'treemacs-evil)
-   (global-set-key [f10] 'treemacs-select-window)
    #+END_SRC
+
+
+** Improve visuals
+   #+BEGIN_SRC emacs-lisp
+   (require 'highlight-parentheses)
+   (highlight-parentheses-mode t)
+   #+END_SRC
+
+   It mackes cursor blinks on buffer scroll
+   #+BEGIN_SRC emacs-lisp
+   (require 'beacon)
+   #+END_SRC
+
+*** Powerline
+    #+BEGIN_SRC emacs-lisp
+    (require 'telephone-line)
+    (telephone-line-mode 1)
+    #+END_SRC
+
+
+*** Tabs
+    #+BEGIN_SRC emacs-lisp
+    (require 'all-the-icons)
+    (require 'centaur-tabs)
+    (centaur-tabs-headline-match)
+    (setq centaur-tabs-style "bar")
+    (setq centaur-tabs-set-icons t)
+    (setq centaur-tabs-set-modified-marker t)
+    (setq centaur-tabs-height 32)
+    (setq centaur-tabs-set-bar 'over)
+
+    (centaur-tabs-mode t)
+    #+END_SRC
+
+    I like to switch between only visible tabs, in other cases it is handful to use ivy
+    #+BEGIN_SRC emacs-lisp
+    (setq centaur-tabs-cycle-scope 'tabs)
+    #+END_SRC
+
+    Grouping is fucking magic, I'll get it later
+    #+BEGIN_SRC emacs-lisp
+    (defun centaur-tabs-buffer-groups ()
+     (list
+      (cond
+       ((or (string-equal "*" (substring (buffer-name) 0 1))
+	    (memq major-mode '(magit-process-mode
+		  magit-status-mode
+		  magit-diff-mode
+		  magit-log-mode
+		  magit-file-mode
+		  magit-blob-mode
+		  magit-blame-mode
+		  )))
+	 "Emacs")
+       ((derived-mode-p 'prog-mode)
+	 "Editing")
+       ((derived-mode-p 'dired-mode)
+	 "Dired")
+       ((memq major-mode '(helpful-mode
+			   help-mode))
+	 "Help")
+       ((memq major-mode '(org-mode
+			   org-agenda-clockreport-mode
+			   org-src-mode
+			   org-agenda-mode
+			   org-beamer-mode
+			   org-indent-mode
+			   org-bullets-mode
+			   org-cdlatex-mode
+			   org-agenda-log-mode
+			   diary-mode))
+	 "OrgMode")
+     (t
+      (centaur-tabs-get-group-name (current-buffer))))))
+    #+END_SRC
+
+** Programming languages intergation
+   #+BEGIN_SRC emacs-lisp
+   (require 'nix-mode)
+   (add-to-list 'auto-mode-alist '("\\.nix\\'" . nix-mode))
+   #+END_SRC
+
 
 ** Keys
    #+BEGIN_SRC emacs-lisp
    (evil-leader/set-leader "SPC")
    (evil-leader/set-key
+    "x" 'kill-this-buffer
+    "n" 'centaur-tabs-forward
+    "p" 'centaur-tabs-backward
+
     "d" 'find-file
-    "D" 'open-ranger
     "j" 'counsel-projectile
     "b" 'ivy-switch-buffer
-    "h" 'helm-org-in-buffer-headings
     "r" 'counsel-M-x
     "e" 'eval-expression
     "t" 'org-time-stamp
     "c" 'insert-char)
+
+   (global-set-key [f10] 'treemacs)
    #+END_SRC
 
 
@@ -162,6 +234,15 @@ color:
    (base16-theme-define 'base16-nix base16-nix-colors)
    (provide-theme 'base16-nix)
    (provide 'base16-nix-theme)
+
+   ;; Set the cursor color based on the evil state
+   (defvar my/base16-colors base16-nix-colors)
+   (setq evil-emacs-state-cursor   `(,(plist-get my/base16-colors :base0D) box)
+	 evil-insert-state-cursor  `(,(plist-get my/base16-colors :base0D) bar)
+	 evil-motion-state-cursor  `(,(plist-get my/base16-colors :base0E) box)
+	 evil-normal-state-cursor  `(,(plist-get my/base16-colors :base0B) box)
+	 evil-replace-state-cursor `(,(plist-get my/base16-colors :base08) bar)
+	 evil-visual-state-cursor  `(,(plist-get my/base16-colors :base09) box))
    #+END_SRC
 
 ''

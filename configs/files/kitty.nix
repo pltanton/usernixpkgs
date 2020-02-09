@@ -1,6 +1,6 @@
 colors:
 ''
-font_family Fira Code
+font_family Hack
 font_size 13
 
 background ${colors.xresourcesMap.background}
