@@ -28,6 +28,8 @@ pkgs:
       diminish
 
       nix-mode
+      yaml-mode
+
       highlight-parentheses
       beacon
     ];
@@ -37,11 +39,11 @@ pkgs:
     enable = true;
     config = {
       taskd = {
-	server = "hz1.kaliwe.ru:53589";
-	credentials = "home/anton/4beddf06-a575-485f-beac-0bc6357261dc";
-	certificate = "~/.task_kaliwe/anton/public.cert";
-	key = "~/.task_kaliwe/anton/private.key";
-	ca = "~/.task_kaliwe/ca.cert";
+  server = "hz1.kaliwe.ru:53589";
+  credentials = "home/anton/4beddf06-a575-485f-beac-0bc6357261dc";
+  certificate = "~/.task_kaliwe/anton/public.cert";
+  key = "~/.task_kaliwe/anton/private.key";
+  ca = "~/.task_kaliwe/ca.cert";
       };
     };
   };
@@ -52,7 +54,7 @@ pkgs:
       enable = true;
       theme = "robbyrussell";
       plugins = [ "git" "sudo"
-		  "systemd" "wd" "cp" "history-substring-search" "nix-shell" ];
+      "systemd" "wd" "cp" "history-substring-search" "nix-shell" ];
     };
     sessionVariables = {
       EDITOR = "nvim";

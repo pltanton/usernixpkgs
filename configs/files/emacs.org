@@ -114,6 +114,7 @@ color:
    It mackes cursor blinks on buffer scroll
    #+BEGIN_SRC emacs-lisp
    (require 'beacon)
+   (beacon-mode t)
    #+END_SRC
 
 *** Powerline
@@ -127,12 +128,11 @@ color:
     #+BEGIN_SRC emacs-lisp
     (require 'all-the-icons)
     (require 'centaur-tabs)
-    (centaur-tabs-headline-match)
-    (setq centaur-tabs-style "bar")
+    (setq centaur-tabs-style "wave")
     (setq centaur-tabs-set-icons t)
     (setq centaur-tabs-set-modified-marker t)
     (setq centaur-tabs-height 32)
-    (setq centaur-tabs-set-bar 'over)
+    (centaur-tabs-headline-match)
 
     (centaur-tabs-mode t)
     #+END_SRC
@@ -179,10 +179,15 @@ color:
       (centaur-tabs-get-group-name (current-buffer))))))
     #+END_SRC
 
+
 ** Programming languages intergation
    #+BEGIN_SRC emacs-lisp
    (require 'nix-mode)
    (add-to-list 'auto-mode-alist '("\\.nix\\'" . nix-mode))
+
+   (require 'yaml-mode)
+   (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+   (add-to-list 'auto-mode-alist '("\\.yaml\\'" . yaml-mode))
    #+END_SRC
 
 
@@ -190,6 +195,8 @@ color:
    #+BEGIN_SRC emacs-lisp
    (evil-leader/set-leader "SPC")
    (evil-leader/set-key
+    "g" 'centaur-tabs-counsel-switch-group
+
     "x" 'kill-this-buffer
     "n" 'centaur-tabs-forward
     "p" 'centaur-tabs-backward
