@@ -15,12 +15,15 @@ pkgs:
       all-the-icons
 
       counsel
+      counsel-projectile
       ivy-hydra
       flx
       ranger
       base16-theme
 
+      projectile
       treemacs
+      treemacs-projectile
       treemacs-evil
 
       org-bullets

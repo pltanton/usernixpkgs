@@ -81,6 +81,7 @@ color:
 ** Enable ivy for fuzzy search
    #+BEGIN_SRC emacs-lisp
    (require 'counsel)
+   (require 'counsel-projectile)
    (require 'ivy-hydra)
    (ivy-mode 1)
    (setq ivy-use-virtual-buffers t)
@@ -92,16 +93,28 @@ color:
    (setq ivy-re-builders-alist
      '((t . ivy--regex-fuzzy)))
    (setq ivy-initial-inputs-alist nil)
-
-   (require 'ranger)
-   (ranger-override-dired-mode t)
    #+END_SRC
 
 
-** Treemacs
+** Projectile
+
+   #+BEGIN_SRC emacs-lisp
+   (require 'projectile)
+   (projectile-mode t)
+   #+END_SRC
+
+
+** File navigation
+   Treemacs is perfect replacement of NERDTree.
+   Ranger implementation is also good to chose files to edit and import as porjcet if needed.
    #+BEGIN_SRC emacs-lisp
    (require 'treemacs)
+   (require 'treemacs-projectile)
    (require 'treemacs-evil)
+   (treemacs) ;; Open on start
+
+   (require 'ranger)
+   (ranger-override-dired-mode t)
    #+END_SRC
 
 
@@ -129,54 +142,18 @@ color:
     (require 'all-the-icons)
     (require 'centaur-tabs)
     (setq centaur-tabs-style "wave")
+    (centaur-tabs-headline-match)
     (setq centaur-tabs-set-icons t)
     (setq centaur-tabs-set-modified-marker t)
     (setq centaur-tabs-height 32)
-    (centaur-tabs-headline-match)
-
     (centaur-tabs-mode t)
+
+    (centaur-tabs-group-by-projectile-project)
     #+END_SRC
 
     I like to switch between only visible tabs, in other cases it is handful to use ivy
     #+BEGIN_SRC emacs-lisp
     (setq centaur-tabs-cycle-scope 'tabs)
-    #+END_SRC
-
-    Grouping is fucking magic, I'll get it later
-    #+BEGIN_SRC emacs-lisp
-    (defun centaur-tabs-buffer-groups ()
-     (list
-      (cond
-       ((or (string-equal "*" (substring (buffer-name) 0 1))
-	    (memq major-mode '(magit-process-mode
-		  magit-status-mode
-		  magit-diff-mode
-		  magit-log-mode
-		  magit-file-mode
-		  magit-blob-mode
-		  magit-blame-mode
-		  )))
-	 "Emacs")
-       ((derived-mode-p 'prog-mode)
-	 "Editing")
-       ((derived-mode-p 'dired-mode)
-	 "Dired")
-       ((memq major-mode '(helpful-mode
-			   help-mode))
-	 "Help")
-       ((memq major-mode '(org-mode
-			   org-agenda-clockreport-mode
-			   org-src-mode
-			   org-agenda-mode
-			   org-beamer-mode
-			   org-indent-mode
-			   org-bullets-mode
-			   org-cdlatex-mode
-			   org-agenda-log-mode
-			   diary-mode))
-	 "OrgMode")
-     (t
-      (centaur-tabs-get-group-name (current-buffer))))))
     #+END_SRC
 
 
@@ -201,8 +178,10 @@ color:
     "n" 'centaur-tabs-forward
     "p" 'centaur-tabs-backward
 
-    "d" 'find-file
+    "." 'find-file
     "j" 'counsel-projectile
+    "J" 'counsel-projectile-switch-project
+
     "b" 'ivy-switch-buffer
     "r" 'counsel-M-x
     "e" 'eval-expression
