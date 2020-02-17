@@ -165,6 +165,20 @@ color:
    (require 'yaml-mode)
    (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
    (add-to-list 'auto-mode-alist '("\\.yaml\\'" . yaml-mode))
+
+   (require 'typescript-mode)
+   (add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescript-mode))
+   (setq typescript-indent-level 2)
+   #+END_SRC
+
+
+** LSP
+   #+BEGIN_SRC emacs-lisp
+   (require 'lsp-ui)
+   (require 'lsp-treemacs)
+   (require 'company-lsp)
+   (require 'lsp-mode)
+   (add-hook 'prog-mode-hook #'lsp)
    #+END_SRC
 
 

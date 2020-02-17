@@ -35,6 +35,13 @@ pkgs:
 
       highlight-parentheses
       beacon
+
+      typescript-mode
+
+      lsp-mode
+      lsp-ui
+      company-lsp
+      lsp-treemacs
     ];
   };
 
@@ -66,7 +73,6 @@ pkgs:
       NIX_BUILD_SHELL = "zsh";
       LC_ALL = "en_US.UTF-8";
       PATH = "$HOME/.nix-profile/bin:$PATH";
-      NIX_PATH = "$HOME/.nix-defexpr/channels";
     };
   };
 
