@@ -39,9 +39,12 @@ pkgs:
       typescript-mode
 
       lsp-mode
+      flycheck
       lsp-ui
       company-lsp
       lsp-treemacs
+
+      vue-mode
     ];
   };
 

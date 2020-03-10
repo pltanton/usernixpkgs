@@ -169,16 +169,22 @@ color:
    (require 'typescript-mode)
    (add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescript-mode))
    (setq typescript-indent-level 2)
+
+   (require 'vue-mode)
+   (add-to-list 'auto-mode-alist '("\\.vue\\'" . vue-mode))
    #+END_SRC
 
 
 ** LSP
    #+BEGIN_SRC emacs-lisp
+   (require 'flycheck)
    (require 'lsp-ui)
    (require 'lsp-treemacs)
    (require 'company-lsp)
    (require 'lsp-mode)
    (add-hook 'prog-mode-hook #'lsp)
+
+   (mapc 'lsp-ui-flycheck-add-mode '(typescript-mode js-mode css-mode vue-html-mode vue-mode))
    #+END_SRC
 
 

@@ -2,6 +2,7 @@ pkgs:
 
 let
   pkgsStable = import <nixos-stable> {};
+  gradle2nix = import (fetchTarball "https://github.com/tadfisher/gradle2nix/archive/master.tar.gz")  {};
 in (with pkgs; [
   ###################
   # Packages for DE #
@@ -71,12 +72,9 @@ in (with pkgs; [
 
   # GUI
   transmission-remote-gtk
-  keepassxc
   (lowPrio kdenlive)
-  #my-rapid-photo-downloader
   rapid-photo-downloader
   evince
-  feh
   gnome3.eog
   gthumb
   gimp
@@ -92,12 +90,15 @@ in (with pkgs; [
   scrcpy
   darktable
   caffeine-ng
+  tigervnc
 
   # Web
   chromium
   qutebrowser
 
   # Dev
+  gradle2nix
+  morph
   nodejs
   adoptopenjdk-bin
   jetbrains.idea-community
