@@ -38,6 +38,7 @@ pkgs:
 
       typescript-mode
 
+      prettier-js
       lsp-mode
       flycheck
       lsp-ui

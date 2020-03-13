@@ -35,6 +35,21 @@ color:
    (require 'diminish)
    #+END_SRC
 
+   Disable tabs, use spaces instead. Inserting a TAB possible by quotted-insert ~C-q <TAB>~.
+
+   #+BEGIN_SRC emacs-lisp
+   (defun infer-indentation-style ()
+     ;; if our source file uses tabs, we use tabs, if spaces spaces, and if
+     ;; neither, we use the current indent-tabs-mode
+     (let ((space-count (how-many "^  " (point-min) (point-max)))
+	   (tab-count (how-many "^\t" (point-min) (point-max))))
+       (if (> space-count tab-count) (setq indent-tabs-mode nil))
+       (if (> tab-count space-count) (setq indent-tabs-mode t))))
+
+   (setq-default indent-tabs-mode nil)
+   (infer-indentation-style)
+   #+END_SRC
+
 
 ** Org mode
    #+BEGIN_SRC emacs-lisp
@@ -172,6 +187,14 @@ color:
 
    (require 'vue-mode)
    (add-to-list 'auto-mode-alist '("\\.vue\\'" . vue-mode))
+   (add-hook 'vue-mode-hook (lambda () (setq syntax-ppss-table nil)))
+   #+END_SRC
+
+   Enable prettier js to apply on save on JS-like modes
+   #+BEGIN_SRC emacs-lisp
+   (require 'prettier-js)
+   (add-hook 'vue-mode-hook 'prettier-js-mode)
+   (add-hook 'typescript-mode-hook 'prettier-js-mode)
    #+END_SRC
 
 
@@ -182,9 +205,11 @@ color:
    (require 'lsp-treemacs)
    (require 'company-lsp)
    (require 'lsp-mode)
-   (add-hook 'prog-mode-hook #'lsp)
 
-   (mapc 'lsp-ui-flycheck-add-mode '(typescript-mode js-mode css-mode vue-html-mode vue-mode))
+   (add-hook 'prog-mode-hook #'lsp)
+   (add-hook 'vue-mode-hook #'lsp)
+
+   (mapc 'lsp-ui-flycheck-add-mode '(typescript-mode js-mode css-mode vue-html-mode))
    #+END_SRC
 
 
