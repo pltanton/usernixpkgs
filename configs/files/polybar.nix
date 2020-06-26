@@ -5,7 +5,7 @@ colors:
     monitor = "\${env:MONITOR:DP1}";
     width = "100%:-16";
     height = 25;
-    offset-x = 8; 
+    offset-x = 8;
     offset-y = 8;
     fixed-center = false;
 
@@ -21,7 +21,7 @@ colors:
     module-margin-left = 1;
     module-margin-right = 2;
 
-    font-0 = "Hack:pixelsize=10;1";
+    font-0 = "Iosevka:pixelsize=10;1";
     font-1 = "siji:pixelsize=10;1";
 
     modules-left = "workspaces-xmonad";

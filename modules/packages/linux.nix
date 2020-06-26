@@ -1,8 +1,8 @@
 pkgs:
 
 let
-  pkgsStable = import <nixos-stable> {};
   gradle2nix = import (fetchTarball "https://github.com/tadfisher/gradle2nix/archive/master.tar.gz")  {};
+  pkgsStable = import <nixos-stable> { };
 in (with pkgs; [
   ###################
   # Packages for DE #
@@ -16,31 +16,32 @@ in (with pkgs; [
   maim
   networkmanagerapplet
   pamixer
+  paprefs
   pavucontrol
   shared_mime_info
   siji
   xbanish
   xclip
   xdotool
-  xfce.thunar
-  xfce.tumbler
+  pcmanfm
+  ark
   xkblayout-state
   xorg.xbacklight
   myxkbutil
-
-  #pkgsStable.qmk_firmware
+  xxkb
+  xorg.xkill
+  glib
 
   # Fonts
   font-awesome_5
   emojione
+  iosevka-bin
   #nerdfonts
 
   #################
   # Look and feel #
   #################
   gnome3.adwaita-icon-theme
-  hicolor-icon-theme
-
 
   #############
   # User apps #
@@ -52,12 +53,14 @@ in (with pkgs; [
   jq
   #gopass
   bitwarden-cli
+  mpc_cli
+  ncmpcpp
   htop
   inetutils
   killall
   nfs-utils
   #nodePackages.peerflix
-  p7zip
+  ispell
 
   #pass
   (pass.withExtensions (ex: with ex; [ pass-otp ]))
@@ -71,7 +74,13 @@ in (with pkgs; [
   tree
 
   # GUI
+  sublime-music
+  clementine
+  xournalpp
+  discord
+  zoom-us
   transmission-remote-gtk
+  transmission-gtk
   (lowPrio kdenlive)
   rapid-photo-downloader
   evince
@@ -84,8 +93,9 @@ in (with pkgs; [
   vlc
   xsane
   slack
-  #steam
+  steam
   bitwarden
+  bitwarden-rofi
   sidequest
   scrcpy
   darktable
@@ -97,13 +107,21 @@ in (with pkgs; [
   qutebrowser
 
   # Dev
+  texlive.combined.scheme-full
+  clang-tools
   gradle2nix
   morph
   nodejs
+  insomnia
+  postman
   adoptopenjdk-bin
   jetbrains.idea-community
-  (lowPrio adoptopenjdk-hotspot-bin-8)
+  jetbrains.idea-ultimate
+  dbeaver
   go
+  gopls
+  protobuf
+  grpc
   (python3.withPackages (pp: with pp; [
     python-language-server
     pylint

@@ -2,7 +2,7 @@ pkgs: oldAttrs:
 
 let
   colors = import ./modules/colors.nix;
-  pkgsStable = import <nixos-stable> {};
+  #pkgsStable = import <nixos-stable> {};
 in {
   home = oldAttrs.home // {
     keyboard = {
@@ -14,12 +14,12 @@ in {
   gtk = {
     enable = true;
     theme = {
-      package = pkgs.adapta-gtk-theme;
-      name = "Adapta-Nokto-Eta";
+      package = pkgs.qogir-theme;
+      name = "Qogir-dark";
     };
     iconTheme = {
-      package = pkgs.paper-icon-theme;
-      name = "Paper";
+      package = pkgs.qogir-icon-theme;
+      name = "Qogir-dark";
     };
   };
 
@@ -40,12 +40,15 @@ in {
     };
     windowManager.xmonad = {
       enable = true;
-      haskellPackages = pkgsStable.haskellPackages;
+      #haskellPackages = pkgsStable.haskellPackages;
       extraPackages = haskellPackages: with haskellPackages; [
         xmonad-extras
         xmonad-contrib
         taffybar
       ];
+    };
+    windowManager.awesome = {
+      enable = false;
     };
     importedVariables = [
       "GDK_PIXBUF_MODULE_FILE"

@@ -2,7 +2,7 @@ let
   colors = import ../modules/colors.nix;
 in {
   global = {
-    font = "Hack 10";
+    font = "Iosevka 10";
     markup = "yes";
     format = "%b";
     sort = "yes";
@@ -12,7 +12,7 @@ in {
     show_age_threshold = 60;
     word_wrap = "yes";
     ignore_newline = "no";
-    geometry = "300x5-8+41";
+    geometry = "500x60-65+65";
     shrink = "no";
     transparency = 18;
     idle_threshold = 120;
@@ -32,13 +32,13 @@ in {
   };
   urgency_low = {
     msg_urgency = "low";
-    background = colors.black;
-    foreground = colors.lightGray;
+    background = colors.base0;
+    foreground = colors.base5;
   };
   urgency_normal = {
     msg_urgency = "normal";
-    background = colors.black;
-    foreground = colors.lightGray;
+    background = colors.base0;
+    foreground = colors.base5;
   };
   urgency_critical = {
     msg_urgency = "critical";

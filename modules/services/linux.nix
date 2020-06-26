@@ -1,29 +1,29 @@
 pkgs:
 
 let
-  pkgsStable = import <nixos-stable> {};
+  #pkgsStable = import <nixos-stable> {};
 in {
-  syncthing = {
-    enable = true;
-  };
+  syncthing = { enable = false; };
 
-  compton = { enable = true; } // import ../../configs/compton.nix;
+  picom = { enable = true; } // import ../../configs/compton.nix;
 
   taffybar = {
     enable = true;
-    package = pkgsStable.taffybar;
+    package = pkgs.taffybar;
   };
+
+  emacs.enable = true;
 
   status-notifier-watcher.enable = true;
 
   network-manager-applet.enable = true;
   udiskie.enable = true;
   pasystray.enable = true;
+  parcellite.enable = true;
   blueman-applet.enable = true;
+  unclutter.enable = true;
 
-  gnome-keyring = {
-    enable = true;
-  };
+  gnome-keyring = { enable = true; };
 
   screen-locker = {
     enable = true;
@@ -41,7 +41,6 @@ in {
     settings = import ../../configs/dunst.nix;
   };
 
-
   stalonetray = {
     enable = false;
     config = import ../../configs/stalonetray.nix;
@@ -53,5 +52,6 @@ in {
   };
 
   nextcloud-client.enable = true;
-}
 
+  mpd = { enable = true; };
+}

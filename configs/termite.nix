@@ -4,7 +4,7 @@ in {
   iconName = "utilities-terminal";
   scrollbackLines = 10000;
   clickableUrl = true;
-  font = "Hack 13";
+  font = "Iosevka 13";
   foregroundColor = colors.lightGray;
   foregroundBoldColor = colors.lightGray;
   backgroundColor = "rgba(43, 48, 59, 1)";

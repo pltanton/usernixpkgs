@@ -1,6 +1,7 @@
 self: super:
 {
   my-rapid-photo-downloader = super.callPackage ./pkgs/my-rapid-photo-downloader.nix {};
+  bitwarden-rofi = super.callPackage ./pkgs/bitwarden-rofi {};
   texlab = super.callPackage ./pkgs/texlab.nix {};
   fuzzylite = super.callPackage ./pkgs/fuzzylite.nix {};
   vcmi = super.callPackage ./pkgs/vcmi.nix {};
@@ -18,4 +19,6 @@ self: super:
     propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++
       [ super.pythonPackages.pillow ];
   });
+
+  sublime-music = super.callPackage ./pkgs/sublime-music.nix {};
 }

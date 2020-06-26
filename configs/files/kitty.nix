@@ -1,6 +1,6 @@
 colors:
 ''
-font_family Hack
+font_family Iosevka Term
 font_size 13
 
 background ${colors.xresourcesMap.background}
