@@ -132,4 +132,10 @@ in (with pkgs; [
     pygments
     hvac
   ]))
+  nodePackages.yaml-language-server
+  nodePackages.prettier
+  nodePackages.vue-language-server
+  nodePackages.eslint
+  nodePackages.vscode-html-languageserver-bin
+  nodePackages.vscode-css-languageserver-bin
 ])
