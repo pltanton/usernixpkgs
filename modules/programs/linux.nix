@@ -8,6 +8,8 @@ pkgs:
     #path = "/home/anton/workdir/home-manager";
   };
 
+  emacs = import ../../configs/emacs/emacs.nix pkgs.emacs;
+
   autorandr = {
     enable = true;
     hooks.postswitch = {
