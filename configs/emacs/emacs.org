@@ -1,5 +1,11 @@
-color:
-''
+pkgs: color:
+
+let
+  emmyLuaJar = builtins.fetchurl {
+    url = "https://ci.appveyor.com/api/buildjobs/dhcvajo57e3k1nxe/artifacts/EmmyLua-LS/build/libs/EmmyLua-LS-all.jar";
+    sha256 = "1x1f4g2bqccfc7nqv03pgrmy9f63dv2llnn67218yj2n8m5xkq5c";
+  };
+in ''
 
 * Disable default visual GUI shit.
 #+BEGIN_SRC emacs-lisp
@@ -360,6 +366,11 @@ Ranger implementation is also good to chose files to edit and import as porjcet 
     :mode "\\.hs\\'")
 
   (use-package
+      lua-mode
+    :after lsp-mode
+    :mode "\\.lua\\'")
+
+  (use-package
       go-mode
     :after lsp-mode
     :mode "\\.go\\'")
@@ -406,19 +417,19 @@ Enable prettier js to apply on save on JS-like modes
 * LSP
 #+BEGIN_SRC emacs-lisp
 
-  (use-package lsp-mode
+  (use-package
+      lsp-mode
     :hook ((prog-mode . lsp)
            (vue-mode . lsp))
-           ;; if you want which-key integration
-           ;; (lsp-mode . lsp-enable-which-key-integration))
-    :init
-    (use-package flycheck)
+    ;; if you want which-key integration
+    ;; (lsp-mode . lsp-enable-which-key-integration))
+    :init (use-package
+              flycheck)
     :commands lsp
-    :config
-    (use-package lsp-ui))
-    ;:config
-    ;(mapc 'lsp-ui-flycheck-add-mode '(typescript-mode js-mode css-mode vue-html-mode)))
-
+    :config (progn
+              (use-package
+                  lsp-ui)
+              (setq lsp-clients-emmy-lua-jar-path "${emmyLuaJar}")))
 #+END_SRC
 
 

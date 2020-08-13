@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
 let
+  #nixpkgs.overlays = [ (import ./vendor/taffybar/overlay.nix) ];
   colors = import ./modules/colors.nix;
   homeEnv = import ./env.nix pkgs;
   config = {

@@ -1,7 +1,8 @@
 pkgs:
 
 let
-  #pkgsStable = import <nixos-stable> {};
+  pkgsStable = import <nixos-stable> {};
+  taffybar = import ../../vendor/taffybar/default.nix;
 in {
   syncthing = { enable = false; };
 
@@ -9,7 +10,7 @@ in {
 
   taffybar = {
     enable = true;
-    package = pkgs.taffybar;
+    package = taffybar;
   };
 
   emacs.enable = true;

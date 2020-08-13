@@ -1,0 +1,3 @@
+[submodule "vendor/taffybar"]
+	path = vendor/taffybar
+	url = git@github.com:taffybar/taffybar.git

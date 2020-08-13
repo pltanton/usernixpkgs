@@ -22,7 +22,7 @@ color:
 
 .taffy-box {
         border-radius: 0px;
-        background-color: ${color.base1};
+        background-color: ${color.base0};
 }
 
 .inner-pad {

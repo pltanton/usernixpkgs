@@ -1,7 +1,8 @@
 pkgs:
 
 let
-  gradle2nix = import (fetchTarball "https://github.com/tadfisher/gradle2nix/archive/master.tar.gz")  {};
+  gradle2nix = import (fetchTarball
+    "https://github.com/tadfisher/gradle2nix/archive/master.tar.gz") { };
   pkgsStable = import <nixos-stable> { };
 in (with pkgs; [
   ###################
@@ -23,7 +24,7 @@ in (with pkgs; [
   xbanish
   xclip
   xdotool
-  pcmanfm
+  pantheon.elementary-files
   ark
   xkblayout-state
   xorg.xbacklight
@@ -74,6 +75,7 @@ in (with pkgs; [
   tree
 
   # GUI
+  syncplay
   sublime-music
   clementine
   xournalpp
@@ -93,7 +95,7 @@ in (with pkgs; [
   vlc
   xsane
   slack
-  steam
+  #steam
   bitwarden
   bitwarden-rofi
   sidequest
@@ -106,8 +108,12 @@ in (with pkgs; [
   chromium
   qutebrowser
 
+  # LaTeX
+  (texlive.combine {
+    inherit (texlive) scheme-medium titlesec;
+  })
+
   # Dev
-  texlive.combined.scheme-full
   clang-tools
   gradle2nix
   morph
@@ -122,16 +128,17 @@ in (with pkgs; [
   gopls
   protobuf
   grpc
-  (python3.withPackages (pp: with pp; [
-    python-language-server
-    pylint
-    jedi
-    flake8
-    autopep8
-    grpcio
-    pygments
-    hvac
-  ]))
+  (python3.withPackages (pp:
+    with pp; [
+      python-language-server
+      pylint
+      jedi
+      flake8
+      autopep8
+      grpcio
+      pygments
+      hvac
+    ]))
   nodePackages.yaml-language-server
   nodePackages.prettier
   nodePackages.vue-language-server

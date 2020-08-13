@@ -37,6 +37,7 @@ emacsPackage:
 
       nix-mode
       yaml-mode
+      lua-mode
 
       highlight-parentheses
       beacon
