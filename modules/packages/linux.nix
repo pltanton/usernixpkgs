@@ -33,6 +33,8 @@ in (with pkgs; [
   xorg.xkill
   glib
 
+  haskellPackages.greenclip
+
   # Fonts
   font-awesome_5
   emojione
@@ -143,6 +145,4 @@ in (with pkgs; [
   nodePackages.prettier
   nodePackages.vue-language-server
   nodePackages.eslint
-  nodePackages.vscode-html-languageserver-bin
-  nodePackages.vscode-css-languageserver-bin
 ])

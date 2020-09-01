@@ -3,7 +3,7 @@ pkgs: oldAttrs:
 let
   colors = import ./modules/colors.nix;
   pkgsStable = import <nixos-stable> {};
-  taffybar = import ./vendor/taffybar/default.nix;
+  #taffybar = import ./vendor/taffybar/default.nix;
 in {
   home = oldAttrs.home // {
     keyboard = {
@@ -31,6 +31,12 @@ in {
 
   xresources = import ./modules/xresources.nix colors;
 
+  wayland = {
+    windowManager.sway = {
+      enable = true;
+    };
+  };
+
   xsession = {
     enable = true;
     preferStatusNotifierItems = true;
@@ -44,11 +50,10 @@ in {
     };
     windowManager.xmonad = {
       enable = true;
-      haskellPackages = pkgsStable.haskellPackages;
       extraPackages = haskellPackages: with haskellPackages; [
         xmonad-extras
         xmonad-contrib
-        taffybar
+        haskellPackages.taffybar
       ];
     };
     importedVariables = [
@@ -61,6 +66,7 @@ in {
       ${pkgs.xbanish}/bin/xbanish &
       ${pkgs.clipit}/bin/clipit &
       ${pkgs.lightlocker}/bin/light-locker &
+      ${pkgs.haskellPackages.greenclip}/bin/greenclip daemon &
       '';
   };
 }

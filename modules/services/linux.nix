@@ -2,7 +2,7 @@ pkgs:
 
 let
   pkgsStable = import <nixos-stable> {};
-  taffybar = import ../../vendor/taffybar/default.nix;
+  #taffybar = import ../../vendor/taffybar/default.nix;
 in {
   syncthing = { enable = false; };
 
@@ -10,7 +10,6 @@ in {
 
   taffybar = {
     enable = true;
-    package = taffybar;
   };
 
   emacs.enable = true;
@@ -20,7 +19,7 @@ in {
   network-manager-applet.enable = true;
   udiskie.enable = true;
   pasystray.enable = true;
-  parcellite.enable = true;
+  parcellite.enable = false; # Use CopyQ instead as launch on xsession
   blueman-applet.enable = true;
   unclutter.enable = true;
 

@@ -31,9 +31,7 @@ pkgs: {
     };
     sessionVariables = {
       EDITOR = "nvim";
-      JAVA_HOME = "${pkgs.adoptopenjdk-hotspot-bin-11}";
-      JAVA_HOME_8 = "${pkgs.adoptopenjdk-hotspot-bin-8}";
-      #JAVA_HOME_8_ORACLE = "${pkgs.oraclejdk8}";
+      JAVA_HOME = "${pkgs.adoptopenjdk-bin}";
       NIX_BUILD_SHELL = "zsh";
       LC_ALL = "en_US.UTF-8";
       PATH = "$HOME/.nix-profile/bin:$PATH";
