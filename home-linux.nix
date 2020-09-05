@@ -2,7 +2,7 @@ pkgs: oldAttrs:
 
 let
   colors = import ./modules/colors.nix;
-  pkgsStable = import <nixos-stable> {};
+  pkgsStable = import <nixos-stable> { };
   #taffybar = import ./vendor/taffybar/default.nix;
 in {
   home = oldAttrs.home // {
@@ -31,11 +31,7 @@ in {
 
   xresources = import ./modules/xresources.nix colors;
 
-  wayland = {
-    windowManager.sway = {
-      enable = true;
-    };
-  };
+  wayland = { windowManager.sway = { enable = true; }; };
 
   xsession = {
     enable = true;
@@ -45,21 +41,17 @@ in {
       name = "Paper";
       size = 16;
     };
-    windowManager.awesome = {
-      enable = false;
-    };
+    windowManager.awesome = { enable = false; };
     windowManager.xmonad = {
       enable = true;
-      extraPackages = haskellPackages: with haskellPackages; [
-        xmonad-extras
-        xmonad-contrib
-        haskellPackages.taffybar
-      ];
+      extraPackages = haskellPackages:
+        with haskellPackages; [
+          xmonad-extras
+          xmonad-contrib
+          haskellPackages.taffybar
+        ];
     };
-    importedVariables = [
-      "GDK_PIXBUF_MODULE_FILE"
-      "PATH"
-    ];
+    importedVariables = [ "GDK_PIXBUF_MODULE_FILE" "PATH" ];
 
     initExtra = ''
       ${pkgs.autorandr}/bin/autorandr -c &
@@ -67,6 +59,6 @@ in {
       ${pkgs.clipit}/bin/clipit &
       ${pkgs.lightlocker}/bin/light-locker &
       ${pkgs.haskellPackages.greenclip}/bin/greenclip daemon &
-      '';
+    '';
   };
 }
